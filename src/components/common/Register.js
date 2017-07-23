@@ -9,27 +9,25 @@ import helpers from '../utils/helpers';
 
 export default class Register extends Component {
   constructor(props) {
-      super(props);
-      this.state = {
-          visible : false,
-          firstname: "",
-          lastname: "",
-          emailaddress: "",
-          password: ""
-      }
+    super(props);
+    this.state = {
+      visible : false,
+      firstname: "",
+      lastname: "",
+      emailaddress: "",
+      password: ""
+    }
   }
-
   openModal() {
-      this.setState({
-          visible : true
-      });
+    this.setState({
+      visible : true  
+    });
   }
   closeModal() {
       this.setState({
           visible : false
       });
   }
-
   handleChange(event){
     console.log(event.target);
     // this.setState({firstname: event.target.value, lastname: event.target.value, 
@@ -37,9 +35,7 @@ export default class Register extends Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-
   }
-
   handleSubmit(event){
     event.preventDefault();
 
@@ -49,7 +45,6 @@ export default class Register extends Component {
   render() {
     return (
       <section>
-
         <input 
         	type="button" 
         	value="Register" 
