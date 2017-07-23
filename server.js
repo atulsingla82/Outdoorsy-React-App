@@ -75,3 +75,18 @@ app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
 
+
+
+// //test
+app.get("/test", function (req, res) {
+  console.log("success");
+  res.send("success 2");
+})
+
+app.get("/", function (req, res) {
+  console.log("local ");
+  res.send("local - res.send");
+})
+
+
+
