@@ -1,7 +1,10 @@
  // Include React
 import React, { Component } from 'react';
-// import { Link, Route } from 'react-router-dom';
+import { Redirect,Switch,Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import { ButtonToolbar, Button, ButtonGroup, Well } from 'react-bootstrap';
+
 import Modal from 'react-awesome-modal';
+import Register from './Register.js';
 
 export default class Login extends Component {
   constructor(props) {
@@ -31,12 +34,12 @@ export default class Login extends Component {
       >
         <input 
         	type="button" 
-        	value="Login" 
+        	value="Login / Sign up" 
         	onClick={() => this.openModal()} 
         />
         <Modal 
         	visible={this.state.visible} 
-        	width="40%" 
+        	width="60%" 
         	height="60%" 
         	effect="fadeInUp" 
         	onClickAway={() => this.closeModal()}>
@@ -46,14 +49,14 @@ export default class Login extends Component {
             <form>
             	<br/>
 	            <br/>
-	            <lable>Email</lable>
+	            <label>Email</label>
 	            <input
 	            	name="email"
 	            	type="text"
 	            	width="80%"
 	            />
 	            <br/>
-	            <lable>Password</lable>
+	            <label>Password</label>
 	            <input
 	            	name="password"
 	            	type="text"
@@ -65,12 +68,15 @@ export default class Login extends Component {
 	            	value="submit"
 	            />
 	          </form>
-            <br/>  <br/>
+            <br/>  
+            <br/>
             {/*route to Register modal popup and form*/}
-            <h4>Need an account? </h4>
-            <a 
-              href="">
-              Sign up here.</a>
+            <h4>Dont have an account ?</h4>
+
+
+             <Register />
+         
+
               <br/>
               <br/>
               <a 
