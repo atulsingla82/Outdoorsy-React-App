@@ -32,7 +32,7 @@ export default class CreateOuting extends Component {
   render() {
     return (
       <section
-      	align="left"
+      	align="center"
       >
         <input 
         	type="button" 

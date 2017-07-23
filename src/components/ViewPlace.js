@@ -14,30 +14,25 @@ export default class ViewPlace extends Component {
         photoUrls: []
       }
   }
+  componentDidMount() {
+    this.setState({
+        visible: true,
+      });
+  }
 
   componentDidUpdate() {
     if (this.state.beforeQuery === true) {
-      this.queryPlaceDetails(this.props.placeId);
-      this.setState({
-        detailedPlace: this.state.detailedPlace,
-        beforeQuery: false
-      })
-    }
-    if (this.state.detailedPlace !== {} && this.state.beforeQuery === false) {
-      console.log(this.state.detailedPlace.photos[0]);
-      /*TODO: grab and store data from arrays in the detailedPlace object for rendering */ 
+      this.queryPlaceDetails(this.props.placeId); 
     }
   }
 
   openModal() {
-      this.setState({
-        visible : true,
-      });
+      
   }
 
   closeModal() {
       this.setState({
-        visible : false
+        visible: false
       });
   }
  
@@ -53,7 +48,8 @@ export default class ViewPlace extends Component {
       if (status == googleAPI.places.PlacesServiceStatus.OK) {
         console.log(place);
         this.setState({
-          detailedPlace: place
+          detailedPlace: place,
+          beforeQuery: false
         })
       }
     }
@@ -63,7 +59,7 @@ export default class ViewPlace extends Component {
   render() {
     const place = this.state.detailedPlace;
     return (
-      <section align="left">
+      <section align="center">
         <input 
           type="button" 
           value="More Details"

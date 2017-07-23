@@ -41,7 +41,7 @@ export default class Results extends Component {
         <h4>{selectedPlace.name}</h4>
         Description
           <CreateOuting selectedPlace={selectedPlace} activity={this.props.activity} />
-          <ViewPlace placeId={placeId} queryPlaceDetails={this.queryPlaceDetails} />
+          <ViewPlace placeId={placeId} queryPlaceDetails={this.queryPlaceDetails} googleAPI={this.props.googleAPI}/>
           </Thumbnail>
       </Col>
     </div>
