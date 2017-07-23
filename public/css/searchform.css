@@ -1,0 +1,13 @@
+.searchContainer {
+	text-align: center;
+	padding: 20px;
+}
+
+.container-button {
+	padding:20px;
+}
+
+#input-box{
+    border-radius: 5px;
+	width: 400px;
+}
