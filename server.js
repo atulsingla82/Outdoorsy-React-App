@@ -15,11 +15,6 @@ const app = express();
 // Sets an initial port. We'll use this later in our listener
 const PORT = process.env.PORT || 3000;
 
-// //test
-// app.get("/test", function (req, res) {
-//   console.log("success");
-//   res.send("success 2");
-// })
 
 //bring in the models
 const User = require('./models/User');
@@ -29,13 +24,6 @@ const Adventure = require('./models/Adventure')
 mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2")
 const db = mongoose.connection;
 
-// db.on("error", function(err) {
-//   console.log("Mongoose Error: ", err);
-// });
-
-// db.once("open", function() {
-//   console.log("Mongoose connection successful.");
-// });
 
 // Connect to mongoose
 // const db = mongoose.connect('mongodb://127.0.0.1:27017/outdoorsy', {
@@ -87,6 +75,3 @@ app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
 
-//testing
-// const index = require('./routes/index');
-// const api = require('./routes/api/users');
