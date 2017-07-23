@@ -25,9 +25,9 @@ const PORT = process.env.PORT || 3000;
 const User = require('./models/User');
 const Adventure = require('./models/Adventure')
 
-// Connect to Mongoose
-// mongoose.connect("mongodb://127.0.0.1:27017/outdoorsy")
-// const db = mongoose.connection;
+Connect to Mongoose
+mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2")
+const db = mongoose.connection;
 
 // db.on("error", function(err) {
 //   console.log("Mongoose Error: ", err);
@@ -38,10 +38,10 @@ const Adventure = require('./models/Adventure')
 // });
 
 // Connect to mongoose
-const db = mongoose.connect('mongodb://127.0.0.1:27017/outdoorsy', {
-  useMongoClient: true
-  /* other options */
-});
+// const db = mongoose.connect('mongodb://127.0.0.1:27017/outdoorsy', {
+//   useMongoClient: true
+//   /* other options */
+// });
 
 db.on("error", function(err) {
   console.log("Mongoose Error: ", err);
