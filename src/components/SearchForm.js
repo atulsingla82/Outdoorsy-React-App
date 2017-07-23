@@ -121,7 +121,7 @@ export default class SearchForm extends Component {
                     <Button 
                          type="button"
                         name="activity"
-                        value="paddling"
+                        value="canoeing"
                         onClick = { this.handleChange }>
                         Paddling 
                     </Button> 

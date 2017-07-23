@@ -1,6 +1,4 @@
- // Include React
 import React, { Component } from 'react';
-// import { Link, Route } from 'react-router-dom';
 import Modal from 'react-awesome-modal';
 
 export default class ViewPlace extends Component {
@@ -11,13 +9,9 @@ export default class ViewPlace extends Component {
         visible : false,
         beforeQuery: true,
         detailedPlace: {},
-        photoUrls: []
+        photoUrl: [],
+        photoAttrib: ""
       }
-  }
-  componentDidMount() {
-    this.setState({
-        visible: true,
-      });
   }
 
   componentDidUpdate() {
@@ -27,7 +21,9 @@ export default class ViewPlace extends Component {
   }
 
   openModal() {
-      
+      this.setState({
+        visible: true,
+      });
   }
 
   closeModal() {
@@ -51,6 +47,16 @@ export default class ViewPlace extends Component {
           detailedPlace: place,
           beforeQuery: false
         })
+        if (this.state.detailedPlace) {
+          const photos = this.state.detailedPlace.photos[0];
+          const getPhoto = photos.getUrl({"maxWidth": 500});
+          const attrib = photos.html_attributions[0];
+          console.log(attrib);
+          this.setState({
+            photoUrl: getPhoto,
+            photoAttrib: attrib
+          })  
+        }
       }
     }
     service.getDetails(request, callback);
@@ -58,24 +64,30 @@ export default class ViewPlace extends Component {
 
   render() {
     const place = this.state.detailedPlace;
+    const photoAttrib = this.state.photoAttrib;
     return (
-      <section align="center">
+      <section>
         <input 
           type="button" 
-          value="More Details"
+          value="View"
           id={this.props.placeId} 
           onClick={() => this.openModal()} 
         />
         <Modal 
           visible={this.state.visible} 
-          width="80%" 
-          height="90%" 
+          width="60%" 
+          height="60%" 
           effect="fadeInUp" 
           onClickAway={() => this.closeModal()}>
           <div>
             <h1>{place.name}</h1>
             <h4>{place.formatted_address}</h4>
+            <img src={this.state.photoUrl} width="90%"/><br />
             
+            <div>
+              <a href={place.url} target="_blank">More Details From Google</a> | 
+              <a href={place.website} target="_blank"> Official Website</a>
+            </div>
           </div>
         </Modal>
       </section>

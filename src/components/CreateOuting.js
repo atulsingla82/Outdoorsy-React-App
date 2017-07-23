@@ -31,9 +31,7 @@ export default class CreateOuting extends Component {
 
   render() {
     return (
-      <section
-      	align="center"
-      >
+      <section>
         <input 
         	type="button" 
         	value="Plan an Outing" 
