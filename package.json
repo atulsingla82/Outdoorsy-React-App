@@ -8,7 +8,6 @@
         "build": "webpack -w",
         "dev": "webpack -w & node server",
         "start": "node server "
-
     },
     "author": "",
     "license": "ISC",
