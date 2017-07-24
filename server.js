@@ -18,10 +18,10 @@ const PORT = process.env.PORT || 3000;
 
 //bring in the models
 const User = require('./models/User');
-const Adventure = require('./models/Adventure')
+const Adventure = require('./models/Adventure');
 
 // Connect to Mongoose
-mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2")
+mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2");
 const db = mongoose.connection;
 
 
@@ -79,13 +79,12 @@ app.listen(PORT, function() {
 
 // //test
 app.get("/test", function (req, res) {
-  console.log("success");
   res.send("success 2");
-})
+});
 
 app.get("/", function (req, res) {
   console.log("local ");
-  res.send("local - res.send");
+  res.send("local - /");
 })
 
 
