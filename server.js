@@ -1,13 +1,15 @@
-// root-level
 // Include Server Dependencies
 const express = require("express");
 const logger = require("morgan");
 const cookieParser = require('cookie-parser')
 const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const passport = require('passport');
-
+const expressValidator = require("express-validator");
+const flash = require("connect-flash");
+const session = require("express-session");
+const passport = require("passport");
 const LocalStrategy = require('passport-local').Strategy;
+const mongoose = require("mongoose");
+
 
 // Create Instance of Express
 const app = express();
@@ -15,16 +17,13 @@ const app = express();
 // Sets an initial port. We'll use this later in our listener
 const PORT = process.env.PORT || 3000;
 
-
-//bring in the models
-const User = require('./models/User');
-const Adventure = require('./models/Adventure');
-
-
 //Connect to Mongoose
 mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2");
 const db = mongoose.connection;
 
+//bring in the models
+const User = require('./models/User');
+const Adventure = require('./models/Adventure');
 
 // Connect to mongoose
 // const db = mongoose.connect('mongodb://127.0.0.1:27017/outdoorsy', {
@@ -45,7 +44,7 @@ app.use(logger("dev"));
 // cookie-parser for passport secret
 app.use(cookieParser()); 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false })); // => T to F
+app.use(bodyParser.urlencoded({ extended: true })); 
 //express + passport
 app.use(require('express-session')({
   secret: '****',
@@ -81,6 +80,7 @@ app.listen(PORT, function() {
 
 // //test
 app.get("/test", function (req, res) {
+  console.log("test success")
   res.send("success 2");
 });
 
