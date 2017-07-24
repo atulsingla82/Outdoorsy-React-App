@@ -6,7 +6,7 @@ export default class CreateOuting extends Component {
   constructor(props) {
       super(props);
       this.state = {
-        visible : false,
+        visible : false
       }
       this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -26,6 +26,7 @@ export default class CreateOuting extends Component {
   handleSubmit(event) {
     event.preventDefault();
     /*TODO: Code for POSTing to MongoDB goes here?*/
+    helpers.createOuting(this.state)
   }
 
   render() {

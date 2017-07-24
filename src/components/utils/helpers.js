@@ -8,4 +8,8 @@ export default {
 		return axios.post("/createUser", formData )
 	
 	}
+
+	createOuting(formData){
+		return axios.post("createOuting", formData)
+	}
 };

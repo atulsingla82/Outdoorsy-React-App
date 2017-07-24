@@ -1,13 +1,16 @@
 var mongoose = require ('mongoose');
 var Schema = mongoose.Schema;
-const passportLocalMongoose = require('passport-local-mongoose')
 
 var AdventureSchema = new Schema ({
 	userId: {
 		type: String,
 		required: true
 	},
-	activityType: {
+	selectedPlace: {
+		type: String,
+		required: true
+	},
+	activity: {
 		type: String, 
 		required: true
 	},
@@ -24,6 +27,5 @@ var AdventureSchema = new Schema ({
 	}
 })
 
-AdventureSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("Adventure", AdventureSchema);
