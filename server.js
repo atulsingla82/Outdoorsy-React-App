@@ -12,8 +12,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require("mongoose");
 var router = express.Router();
 
-const routes = require('./routes/index');
-const users = require('./routes/users');
+// const routes = require('./routes/index');
+// const users = require('./routes/users');
 
 // referencing the DBs
 const User = require("./models/User");
@@ -35,7 +35,6 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
-=======
 app.use(express.static("./public")); 
 
 
@@ -78,7 +77,7 @@ app.use(passport.session());
 app.use(express.static("./public")); 
 // app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+// app.use('/', routes);
 
 // app.use(bodyParser.text());
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
@@ -89,13 +88,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-//Connect to Mongoose
-mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2");
-const db = mongoose.connection;
 
-//bring in the models
-const User = require('./models/User');
-const Adventure = require('./models/Adventure');
 
 
 // catch 404 and forward to error handler
