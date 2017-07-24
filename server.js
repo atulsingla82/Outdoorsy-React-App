@@ -81,6 +81,15 @@ app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
 
-//testing
-// const index = require('./routes/index');
-// const api = require('./routes/api/users');
+
+
+
+// //test
+app.get("/test", function (req, res) {
+  res.send("success 2");
+});
+
+app.get("/", function (req, res) {
+  console.log("local ");
+  res.send("local - /");
+})
