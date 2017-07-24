@@ -12,7 +12,6 @@ export default class Login extends Component {
       this.state = {
         visible : false,
       }
-
   }
 
   openModal() {
