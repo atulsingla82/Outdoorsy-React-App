@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "webpack -w",
-        "dev": "webpack -w & nodemon server",
+        "dev": "webpack -w & node server",
         "start": "nodemon server "
     },
     "author": "",
