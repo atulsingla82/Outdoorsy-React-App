@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { ButtonToolbar, Button, ButtonGroup, Well } from 'react-bootstrap';
-/*import loadGoogleMapsAPI from 'load-google-maps-api';
-*/import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
 
 // import '../styles/searchform.css';
 
@@ -59,8 +58,12 @@ export default class SearchForm extends Component {
             if (status == googleAPI.places.PlacesServiceStatus.OK && this.state.results.length == 0) {
               console.log(results);
               this.setState({results: results});
+              let newLat = this.state.lat; 
+              let newLng = this.state.lng;
+              let newActivity = this.state.activity;
+              let newSearchRadius = this.state.searchRadius;
               let newResults = this.state.results;
-              this.props.setParent(newResults);
+              this.props.setParent(newLat, newLng, newActivity, newSearchRadius, newResults);
             }
           }
           service.nearbySearch(request, callback);      
@@ -85,7 +88,12 @@ export default class SearchForm extends Component {
         </div> 
             {/*This is the location search bar */}
         <div>
-            <input id="autocomplete" size={50} placeholder="Start typing the name of a city or town" type="text"></input>
+            <input 
+                id="autocomplete" 
+                size={50} 
+                placeholder="Start typing the name of a city or town" 
+                type="text">
+            </input>
         </div>
         <form onSubmit={this.handleSubmit}>
             <div className = "container-button">
@@ -121,7 +129,7 @@ export default class SearchForm extends Component {
                     <Button 
                          type="button"
                         name="activity"
-                        value="paddling"
+                        value="canoeing"
                         onClick = { this.handleChange }>
                         Paddling 
                     </Button> 

@@ -15,18 +15,38 @@ var router = express.Router();
 const routes = require('./routes/index');
 const users = require('./routes/users');
 
+// referencing the DBs
+const User = require("./models/User");
+const Adventure = require("./models/Adventure");
+
+
 const app = express();
 
 // Sets an initial port. We'll use this later in our listener
 const PORT = process.env.PORT || 3000;
 
+// Run Morgan for Logging
+app.use(logger("dev"));
+// cookie-parser for passport secret
+app.use(cookieParser()); 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false })); // => T to F
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+
+=======
+app.use(express.static("./public")); 
 
 
 // Connect to mongoose
-// const db = mongoose.connect('mongodb://127.0.0.1:27017/outdoorsy', {
-//   useMongoClient: true
-//   /* other options */
-// });
+mongoose.connect('mongodb://127.0.0.1:27017/Outdoorsy2', {
+  useMongoClient: true
+  /* other options */
+});
+const db = mongoose.connection;
+
+
 
 db.on("error", function(err) {
   console.log("Mongoose Error: ", err);
@@ -36,12 +56,16 @@ db.once("open", function() {
   console.log("Mongoose connection successful.");
 });
 
+
 // Run Morgan for Logging
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false })); 
 // F for M herman
 app.use(cookieParser()); // for passport secret
+
+
+//express + passport
 app.use(require('express-session')({
   secret: '****',
   resave: false,
@@ -49,6 +73,8 @@ app.use(require('express-session')({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 app.use(express.static("./public")); 
 // app.use(express.static(path.join(__dirname, 'public')));
 
@@ -61,6 +87,7 @@ app.use('/', routes);
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 
 //Connect to Mongoose
 mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2");
@@ -77,6 +104,18 @@ app.use((req, res, next) => {
   err.status = 404
   next(err);
 });
+
+
+// referencing routes using self executing function
+require("./controllers/controller")(app);
+
+// // catch 404 and forward to error handler
+// app.use((req, res, next) => {
+//   const err = new Error('Not Found');
+//   err.status = 404
+//   next(err);
+// });
+
 
 // development error handler
 // will print stacktrace
