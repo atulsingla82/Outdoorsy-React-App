@@ -37,8 +37,12 @@ export default class App extends Component {
         })
     }
 
-    setParent(newResults) {
+    setParent(newLat, newLng, newActivity, newSearchRadius, newResults) {
         this.setState({
+            lat: newLat, 
+            lng: newLng, 
+            activity: newActivity, 
+            searchRadius: newSearchRadius,
             results: newResults
         });
     }
@@ -57,11 +61,9 @@ export default class App extends Component {
         }
         
         return ( 
-            <Router>
-          <div className = "App">
-              
+        <Router>
+        <div className = "App">
           <Header />
-
             <Grid>
             <Row className = "show-grid">
             <Banner />

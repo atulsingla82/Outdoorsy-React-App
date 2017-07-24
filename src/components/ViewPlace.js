@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-awesome-modal';
+import { Grid, Row, Panel, Button, ButtonGroup, Image } from 'react-bootstrap';
+
 
 export default class ViewPlace extends Component {
   constructor(props) {
@@ -49,7 +51,7 @@ export default class ViewPlace extends Component {
         })
         if (this.state.detailedPlace) {
           const photos = this.state.detailedPlace.photos[0];
-          const getPhoto = photos.getUrl({"maxWidth": 500});
+          const getPhoto = photos.getUrl({"maxWidth": 700});
           const attrib = photos.html_attributions[0];
           console.log(attrib);
           this.setState({
@@ -75,19 +77,24 @@ export default class ViewPlace extends Component {
         />
         <Modal 
           visible={this.state.visible} 
-          width="60%" 
+          width="40%" 
           height="60%" 
           effect="fadeInUp" 
           onClickAway={() => this.closeModal()}>
           <div>
-            <h1>{place.name}</h1>
-            <h4>{place.formatted_address}</h4>
-            <img src={this.state.photoUrl} width="90%"/><br />
-            
-            <div>
-              <a href={place.url} target="_blank">More Details From Google</a> | 
-              <a href={place.website} target="_blank"> Official Website</a>
-            </div>
+              <Panel>
+                <h1>{place.name}</h1>
+                <h4>{place.formatted_address}</h4>  
+                <div>
+                  <Image src={this.state.photoUrl} responsive/>
+                  <br /><br />
+                </div>
+                <ButtonGroup>
+                  <Button bsStyle="info" href={place.url} target="_blank">Google Details</Button>  
+                  <Button bsStyle="info" href={place.website} target="_blank">Website</Button>              
+                  <Button href="javascript:void(0);" onClick={() => this.closeModal()}>Close</Button>
+                </ButtonGroup>
+              </Panel>
           </div>
         </Modal>
       </section>
