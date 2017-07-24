@@ -11,16 +11,17 @@ const UserSchema = new Schema({
 	},
 	lastname: {
 		type: String, 
-		required: true
+		required: false
 	},
 	emailaddress: {
 		type: String, 
 		unique: true,
 		match: [/.+\@.+\..+/, "Please enter a valid e-mail address"],
-		required: true
+		required: false
 	},
 	password: {
 		type: String, 
+		unique: true,
 		required: true,
     validate: [
       function(input) {

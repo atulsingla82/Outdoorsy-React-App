@@ -4,35 +4,38 @@ var express = require("express");
 
 var app = express();
 
-// grabbing our models
-var db = require("./models");
+const User = require("../models/User");
+const Adventure = require("../models/Adventure");
 
-//test
-app.get("/test", function (req, res) {
-  console.log("success");
-  res.send("success 2");
-})
+module.exports = function(app) {
+// console.log("Routes loaded properly")
+// //test
+// app.get("/test", function (req, res) {
+//   console.log("success");
+//   res.send("success 2");
+// })
 
 
-// post route to create users
-app.post("/createUser", function(req, res) {
-  console.log(req.body)
+  // post route to create users
+  app.post("/createUser", function(req, res) {
+      console.log("Post route hit!");
+      console.log(req.body)
+      // models is referencing database
+      User.create({
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        emailaddress: req.body.emailaddress,
+        password: req.body.password
+      }, function(err) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          res.send("New user created!");
+        }
+      });
 
-  db.User.create({
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    emailaddress: req.body.emailaddress,
-    password: req.body.password
-  }, function(err) {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      res.send("New user created!");
-    }
   });
 
-});
-
-
+}
 

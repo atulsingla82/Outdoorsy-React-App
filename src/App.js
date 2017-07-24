@@ -37,18 +37,12 @@ export default class App extends Component {
         })
     }
 
-    /*componentDidUpdate() {
-        const lat = this.state.lat;
-        const lng = this.state.lng;
-        const activity = this.state.activity;
-        const searchRadius = this.state.searchRadius; 
-        if (lat !== null && lng !== null && searchRadius !== null && activity !== "") {
-            this.queryPlaces();
-        }
-    }*/
-
-    setParent(newResults) {
+    setParent(newLat, newLng, newActivity, newSearchRadius, newResults) {
         this.setState({
+            lat: newLat, 
+            lng: newLng, 
+            activity: newActivity, 
+            searchRadius: newSearchRadius,
             results: newResults
         });
     }
@@ -67,11 +61,9 @@ export default class App extends Component {
         }
         
         return ( 
-            <Router>
-          <div className = "App">
-              
+        <Router>
+        <div className = "App">
           <Header />
-
             <Grid>
             <Row className = "show-grid">
             <Banner />

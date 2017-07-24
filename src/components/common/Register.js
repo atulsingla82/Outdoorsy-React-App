@@ -33,14 +33,20 @@ export default class Register extends Component {
     console.log(event.target);
     // this.setState({firstname: event.target.value, lastname: event.target.value, 
     //   emailaddress: event.target.value, password: event.target.value})
+    
     this.setState({
       [event.target.name]: event.target.value
     })
   }
   handleSubmit(event){
     event.preventDefault();
+    console.log("The event is")
+    console.log(event);
+    console.log("The state is")
+    console.log(this.state);
+    console.log("executing createUser")
+    helpers.createUser(this.state);
 
-    helpers.createUser(this.state)
   }
  
   render() {
