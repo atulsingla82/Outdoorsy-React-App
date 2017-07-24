@@ -5,24 +5,13 @@ class Featured extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           // images:[];
+           
         };
 
-        // this.getImages = this.getImages.bind(this);
+        
     }
     
-    componentDidMount() {
-    // this.getImages();
-  }
-
-  getImages() {
-
-  }
-
-  // A helper method for rendering one panel for each Image
-  renderImages() {
     
-  }
 
 
     render() {
@@ -33,35 +22,48 @@ class Featured extends Component {
             
             <Carousel>
             <Carousel.Item>
-            <img width ={600}
-            height ={300}
+            <img width ={1200}
+            
             alt=""
-            src = "./images/hiking1.jpg"/>
+            src = "./images/canyon.jpg"/>
             <Carousel.Caption >
-            <h3 > First slide label </h3> 
-            <p > Nulla vitae elit libero, a pharetra augue mollis interdum. </p> 
+            <h3>  Canyonlands National Park,Utah</h3> 
+            <p > 337,598 acres of colorful canyons, mesas, buttes, fins, arches, and spires in the heart of southeast Utah's high desert. </p> 
+
             </Carousel.Caption> 
             </Carousel.Item> 
 
             <Carousel.Item >
-            <img width = {600}
-            height = {300}
+            <img width = {1200}
+           
             alt = ""
-            src = "./images/hiking2.jpg"/>
+            src = "./images/yosemite.jpg"/>
             <Carousel.Caption >
-            <h3 > Second slide label </h3>
-             <p > Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p> 
+            <h3 >Yosemite Grand Traverse</h3>
+             <p > A nearly 60-mile hiking traverse through the heart of Yosemite </p> 
+
              </Carousel.Caption> 
              </Carousel.Item> 
 
              <Carousel.Item >
-            <img width = {600}
-            height = {300}
+            <img width = {1200}
+            
             alt = ""
-            src = "./images/hiking3.jpg"/>
+            src = "./images/lakelouise.jpg"/>
             <Carousel.Caption >
-            <h3> Third slide label </h3> 
-            <p > Praesent commodo cursus magna, vel scelerisque nisl consectetur. </p> 
+            <h3> Lake Louise, Banff, Canada</h3> 
+            <p > Paddle through the iridescent lakes, climb mountains, or just lie back in the grass and enjoy the sunshine and pure mountain air. </p> 
+            </Carousel.Caption> 
+            </Carousel.Item> 
+
+            <Carousel.Item >
+            <img width = {1200}
+            
+            alt = ""
+            src = "./images/peru.jpg"/>
+            <Carousel.Caption >
+            <h3> Cusco , Peru</h3> 
+            <p > One of the top 5 treks in the world.The final destination of the trail just cannot be beaten: Machu Picchu, the mysterious "Lost City of the Incas". </p> 
             </Carousel.Caption> 
             </Carousel.Item> 
 
