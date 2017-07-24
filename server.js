@@ -20,7 +20,8 @@ const PORT = process.env.PORT || 3000;
 const User = require('./models/User');
 const Adventure = require('./models/Adventure');
 
-// Connect to Mongoose
+
+//Connect to Mongoose
 mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2");
 const db = mongoose.connection;
 
@@ -77,6 +78,7 @@ app.listen(PORT, function() {
 
 
 
+
 // //test
 app.get("/test", function (req, res) {
   res.send("success 2");
@@ -86,6 +88,3 @@ app.get("/", function (req, res) {
   console.log("local ");
   res.send("local - /");
 })
-
-
-
