@@ -12,8 +12,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require("mongoose");
 var router = express.Router();
 
-const routes = require('./routes/index');
-const users = require('./routes/users');
+// const routes = require('./routes/index');
+// const users = require('./routes/users');
 
 // referencing the DBs
 const User = require("./models/User");
@@ -77,7 +77,7 @@ app.use(passport.session());
 app.use(express.static("./public")); 
 // app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
+// app.use('/', routes);
 
 // app.use(bodyParser.text());
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
