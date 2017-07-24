@@ -35,7 +35,6 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
-=======
 app.use(express.static("./public")); 
 
 
@@ -89,13 +88,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-//Connect to Mongoose
-mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2");
-const db = mongoose.connection;
 
-//bring in the models
-const User = require('./models/User');
-const Adventure = require('./models/Adventure');
 
 
 // catch 404 and forward to error handler
