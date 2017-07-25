@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import Auth from '../modules/Auth';
+import Banner from '../Banner';
 
 class HomePage extends React.Component {
 
@@ -12,11 +13,19 @@ class HomePage extends React.Component {
   render() {
     return (
       <Card className="container">
-        <CardTitle title="Renga" subtitle="This is the home page." />
+      <Banner />
+        <CardTitle 
+          title="Outdoorsy" 
+          subtitle="This is the home page." 
+        />
           {Auth.isUserAuthenticated() ? (
-            <CardText style={{ fontSize: '16px', color: 'green' }}>Welcome! You are logged in.</CardText>
+            <CardText style={{ fontSize: '16px', color: 'green' }} >
+              Welcome! You are logged in.
+            </CardText>
           ) : (
-            <CardText style={{ fontSize: '16px', color: 'green' }}>You are not logged in.</CardText>
+            <CardText style={{ fontSize: '16px', color: 'green' }}>
+              You are not logged in.
+            </CardText>
           )}
       </Card>
     )

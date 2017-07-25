@@ -1,3 +1,8 @@
+// POST-method routes, for /auth/signup and for /auth/login
+// validation functions with basic rules to check if passed data 
+// contains a valid email address and to ensure if a password contains 
+// at least 8 characters
+
 const express = require('express');
 const validator = require('validator');
 const passport = require('passport');
@@ -77,17 +82,18 @@ function validateLoginForm(payload) {
 
 router.post('/signup', (req, res, next) => {
   const validationResult = validateSignupForm(req.body);
-  if (!validationResult.success) {
-    return res.status(400).json({
-      success: false,
-      message: validationResult.message,
-      errors: validationResult.errors
-    });
-  }
-
+  console.log("validation result")
+  console.log(validationResult);
+  // if (!validationResult.success) {
+  //   return res.status(400).json({
+  //     success: false,
+  //     message: validationResult.message,
+  //     errors: validationResult.errors
+  //   });
+  // }
 
   return passport.authenticate('local-signup', (err) => {
-    if (err) {
+    if (err) { console.log(err);
       if (err.name === 'MongoError' && err.code === 11000) {
         // the 11000 Mongo code is for a duplication email error
         // the 409 HTTP status code is for conflict error

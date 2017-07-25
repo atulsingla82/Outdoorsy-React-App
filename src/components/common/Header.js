@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Button,Nav, NavItem, Navbar} from 'react-bootstrap';
 import Login from './Login.js';
 import Register from './Register.js';
-import { Switch, Redirect,Link, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Switch, Redirect, Link, Route, BrowserRouter as Router } from 'react-router-dom';
+
 
 export default class Header extends Component {
 constructor(props) {
@@ -28,7 +29,7 @@ constructor(props) {
                     
             <Navbar.Header>
               <Navbar.Brand>
-                <a href = "/"> Outdoorsy </a> 
+                <Link to="/"> Outdoorsy </Link> 
               </Navbar.Brand> 
               <Navbar.Toggle/>
             </Navbar.Header> 
@@ -36,16 +37,9 @@ constructor(props) {
           <Navbar.Collapse >
             <Nav pullRight>
               <section>
-              
-                
-        
-           
-         <Login />
-          
-           
-    
-      
-                
+
+              <Login />
+
               </section>
             </Nav> 
           </Navbar.Collapse> 

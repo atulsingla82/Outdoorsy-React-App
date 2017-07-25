@@ -6,9 +6,7 @@ import LoginForm from '../components/LoginForm.jsx';
 
 class LoginPage extends React.Component {
 
-  /**
-   * Class constructor.
-   */
+  /** Class constructor. */
   constructor(props, context) {
     super(props, context);
 
@@ -25,6 +23,8 @@ class LoginPage extends React.Component {
       errors: {},
       successMessage,
       user: {
+        // firstname: '',
+        // lastname: '',
         email: '',
         password: ''
       }
@@ -114,7 +114,6 @@ class LoginPage extends React.Component {
       />
     );
   }
-
 }
 
 LoginPage.contextTypes = {

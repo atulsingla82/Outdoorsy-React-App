@@ -1,6 +1,3 @@
-
-// DIRECTLY FROM TUTORIAL
-// ========================
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -69,6 +66,7 @@ SignUpForm.propTypes = {
 };
 
 export default SignUpForm;
+
 
 // COMBINED TUTORIAL + CLAUDE'S ROUTES 
 // ===================================

@@ -19,8 +19,8 @@ module.exports = {
         include: /src/,
         loader: "babel-loader",
         query: {
-          // These are the specific transformations we'll be using.
-          presets: ["react", "es2015"]
+          presets: ["react", "es2015"],
+          plugins: ["transform-es2015-destructuring", "transform-object-rest-spread"]
         }
       }
     ]

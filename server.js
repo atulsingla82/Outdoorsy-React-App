@@ -3,7 +3,7 @@ const express = require("express");
 const passport = require("passport");
 const config = require('./config');
 const bodyParser = require("body-parser");
-const favicon = require('serve-favicon');
+// const favicon = require('serve-favicon');
 const logger = require("morgan");
 // const mongoose = require("mongoose");
 
@@ -67,21 +67,22 @@ const mainRoute = require('./controllers/main-route.js');
 const apiRoutes = require('./controllers/api-route.js');
 const authRoutes = require('./controllers/auth.js');
 app.use('/', mainRoute);
-app.use('/api', apiRoute);
+app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
 
 
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404
-  next(err);
+  // const err = new Error('Not Found');
+  // err.status = 404
+  // next(err);
+  res.send("not found")
 });
 
 
 // referencing routes using self executing function
-require("./controllers/controller")(app);
+// require("./controllers/controller")(app);
 
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {
@@ -91,27 +92,27 @@ require("./controllers/controller")(app);
 // });
 
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-      res.status(err.status || 500);
-      res.render('error', {
-          message: err.message,
-          error: err
-      });
-  });
-}
+// // development error handler
+// // will print stacktrace
+// if (app.get('env') === 'development') {
+//   app.use(function(err, req, res, next) {
+//       res.status(err.status || 500);
+//       res.render('error', {
+//           message: err.message,
+//           error: err
+//       });
+//   });
+// }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+// // production error handler
+// // no stacktraces leaked to user
+// app.use(function(err, req, res, next) {
+//     res.status(err.status || 500);
+//     res.send('error', {
+//         message: err.message,
+//         error: {}
+//     });
+// });
 
 // Listener
 app.listen(PORT, function() {
