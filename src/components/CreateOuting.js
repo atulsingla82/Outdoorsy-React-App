@@ -1,15 +1,28 @@
 import React, { Component } from 'react';
 import Modal from 'react-awesome-modal';
 import { Panel, FormControl, FormGroup, ControlLabel, Button, ButtonToolbar } from 'react-bootstrap';
+import helpers from './utils/helpers';
 
 export default class CreateOuting extends Component {
   constructor(props) {
       super(props);
+      // get initial state
+      // location and activity are passed in as props and used
+      // to populate corresponding form elements, but date must
+      // be selected by user with datepicker
       this.state = {
-        visible : false
+        visible : false,
+        location: props.selectedPlace.name,
+        activity: props.activity,
+        date: {}
       }
+      this.openModal = this.openModal.bind(this);
+      this.closeModal = this.closeModal.bind(this);
+      this.handleChange = this.handleChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+
   }
+
 
   openModal() {
       this.setState({
@@ -23,10 +36,25 @@ export default class CreateOuting extends Component {
       });
   }
  
+  handleChange(event){
+    event.preventDefault()
+    // console.log("Date change event fired");
+    // console.log("Datepicker value: " + event.target.value);
+
+    this.setState({date: event.target.value})
+    console.log("State: ")
+    console.log(this.state)
+  }
+
   handleSubmit(event) {
     event.preventDefault();
+    console.log("The event is")
+    console.log(event);
+    console.log("The state is")
+    console.log(this.state);
+    console.log("executing createOuting")
     /*TODO: Code for POSTing to MongoDB goes here?*/
-    helpers.createOuting(this.state)
+    helpers.createOuting(this.state);
   }
 
   render() {
@@ -69,6 +97,7 @@ export default class CreateOuting extends Component {
     	            <FormControl
     	            	name="date"
     	            	type="date"
+                    onChange={this.handleChange.bind(this)}
     	            />
                   <br />
     	            <ButtonToolbar>

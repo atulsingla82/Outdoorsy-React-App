@@ -67,6 +67,7 @@ passport.deserializeUser(User.deserializeUser());
 // referencing routes using self executing function
 require("./controllers/controller")(app);
 
+
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {
 //   const err = new Error('Not Found');

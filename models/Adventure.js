@@ -4,9 +4,9 @@ var Schema = mongoose.Schema;
 var AdventureSchema = new Schema ({
 	userId: {
 		type: String,
-		required: true
+		required: false
 	},
-	selectedPlace: {
+	location: {
 		type: String,
 		required: true
 	},

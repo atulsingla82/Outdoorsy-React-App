@@ -7,6 +7,7 @@ var app = express();
 const User = require("../models/User");
 const Adventure = require("../models/Adventure");
 
+
 module.exports = function(app) {
 // console.log("Routes loaded properly")
 // //test
@@ -37,5 +38,19 @@ module.exports = function(app) {
 
   });
 
-}
+  app.post("/createOuting", function(req, res){
+    Adventure.create({
+      location: req.body.location,
+      activity: req.body.activity,
+      date: req.body.date
+    }, function(err){
+      if (err){
+        console.log(err);
+      }
+      else {
+        res.send("New outing created!")
+      }
+    });
+  });
 
+}
