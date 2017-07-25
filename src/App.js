@@ -1,14 +1,60 @@
 import React, { Component } from 'react';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import {  Grid, Row, Col} from 'react-bootstrap';
 import { Switch,Link, Route, BrowserRouter as Router } from 'react-router-dom';
 import loadGoogleMapsAPI from 'load-google-maps-api';
 // import './styles/App.css';
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter
+} from 'react-router-dom'
+
 import SearchForm from './components/SearchForm';
 import Results from './components/Results';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Banner from './components/common/Banner';
 import Featured from './components/Featured';
+
+// remove tap delay, essential for MaterialUI to work properly
+// injectTapEventPlugin();
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    Auth.isUserAuthenticated() ? (
+      <Component {...props} {...rest} />
+    ) : (
+      <Redirect to={{
+        pathname: '/',
+        state: { from: props.location }
+      }}/>
+    )
+  )}/>
+)
+
+const LoggedOutRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    Auth.isUserAuthenticated() ? (
+      <Redirect to={{
+        pathname: '/',
+        state: { from: props.location }
+      }}/>
+    ) : (
+      <Component {...props} {...rest} />
+    )
+  )}/>
+)
+
+const PropsRoute = ({ component: Component, ...rest }) => (
+  <Route {...rest} render={props => (
+    <Component {...props} {...rest} />
+  )}/>
+)
+
 
 export default class App extends Component {
     constructor(props) {
@@ -20,12 +66,14 @@ export default class App extends Component {
             activity: "",
             searchRadius: null,
             apiLoaded: false,
-            results: []
+            results: [],
+            authenticated: false // auth
         }
     }
 
     componentDidMount() {
-    /* Loads the Google Maps API with Places library into this component */    
+    /* Loads the Google Maps API with Places library into this component */
+        this.toggleAuthenticateStatus(), // auth 
         loadGoogleMapsAPI({
             key: 'AIzaSyCUX8t_7WDEjYpCH34o4MPRPREZi_HpOzo',
             libraries: ["places"]
@@ -35,6 +83,11 @@ export default class App extends Component {
               }).catch((err) => {
               console.error(err)
         })
+    }
+
+    toggleAuthenticateStatus() {
+      // check authenticated status and toggle state based on that
+      this.setState({ authenticated: Auth.isUserAuthenticated() })
     }
 
     setParent(newLat, newLng, newActivity, newSearchRadius, newResults) {
@@ -61,27 +114,23 @@ export default class App extends Component {
         }
         
         return ( 
-        <Router>
-        <div className = "App">
-          <Header />
-            <Grid>
-            <Row className = "show-grid">
-            <Banner />
+          <Router>
+            <div className = "App">
+              <Header />
+                <Grid>
+                <Row className = "show-grid">
+                    <Banner />
 
-            <SearchForm googleAPI={this.state.googleAPI} setParent={this.setParent}/>
-            
-            <Switch>
-            <Route path="/Results" render={ResultsPageProps}/>
-            <Route path="/" component ={Featured}/>
-            </Switch>
-
-            </Row> 
-            </Grid>
-
-            <Footer />
-            
+                    <SearchForm googleAPI={this.state.googleAPI} setParent={this.setParent}/>
+                  <Switch>
+                    <Route path="/Results" render={ResultsPageProps}/>
+                    <Route path="/" component ={Featured}/>
+                  </Switch>
+                </Row> 
+                </Grid>
+              <Footer />
             </div>
-            </Router>
+          </Router>
         );
     }
 
