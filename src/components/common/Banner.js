@@ -7,7 +7,7 @@ class Banner extends Component{
 		   <div className="jumbotron" >
 		    <h1>
 		     
-		    Welcome to Outdoorsy !!!
+		    Welcome to Outdoorsy 
 
 		    </h1>
 		  </div>	        
