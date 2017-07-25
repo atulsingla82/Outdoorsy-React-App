@@ -13,10 +13,10 @@ export default class Register extends Component {
     super(props);
     this.state = {
       visible : false,
-      firstname: "",
-      lastname: "",
-      emailaddress: "",
-      password: ""
+      firstname: {},
+      lastname: {},
+      emailaddress: {},
+      password: {}
     }
   }
   openModal() {
@@ -45,7 +45,7 @@ export default class Register extends Component {
     console.log("The state is")
     console.log(this.state);
     console.log("executing createUser")
-    helpers.createUser(this.state);
+    helpers.createUser(this.state); 
 
   }
  
