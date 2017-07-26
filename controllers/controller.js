@@ -11,15 +11,22 @@ router.post("/createOuting", function(req, res){
     location: req.body.location,
     activity: req.body.activity,
     date: req.body.date
-  }, function(err){
-    if (err){
-      console.log(err);
+  }), function(err){
+      if (err){
+        console.log(err);
+      }
+      else {
+        res.send("New outing created!");
+        // res.status(200).json({
+          
+        // })
+        // console.log("New outing created!")
+      }
     }
-    else {
-      res.send("New outing created!")
-    }
-  });
-});
+})
+
 
 module.exports = router;
+
+
 

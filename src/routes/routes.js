@@ -1,16 +1,60 @@
+// ITS NOT CLEAR IF WE NEED THIS WITH REACT ROUTER V.4
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
-import App from '.././App';
-
+import App from '../../App'; //hope this works 
+import LoginPage from './containers/LoginPage.jsx';
+import SignUpPage from './containers/SignUpPage.jsx';
+import DashboardPage from './containers/DashboardPage.jsx';
 import NotFoundPage from './components/NotFoundPage';
+import Auth from './modules/Auth';
 
-const routes = (
-  <Route path="/" component={Layout}>
-    <IndexRoute component={IndexPage}/>
-    <Route path="athlete/:id" component={AthletePage}/>
-    <Route path="*" component={NotFoundPage}/>
-  </Route>
-);
+// ?
+import SearchForm from './components/SearchForm';
+import Results from './components/Results';
+import Header from './components/common/Header';
+import Footer from './components/common/Footer';
+import Banner from './components/common/Banner';
+import Featured from './components/Featured';
+
+
+const routes = {
+  // base component (wrapper for the whole application).
+  component: App, //"Base" -- do we need another?
+  childRoutes: [
+
+    {
+      path: '/',
+      getComponent: (location, callback) => {
+        if (Auth.isUserAuthenticated()) {
+          callback(null, DashboardPage); //authorized user view
+        } else { 
+          callback(null, App); //HomePage
+        }
+      }
+    },
+
+    {
+      path: '/login',
+      component: LoginPage
+    },
+
+    {
+      path: '/signup',
+      component: SignUpPage
+    },
+
+    {
+      path: '/logout',
+      onEnter: (nextState, replace) => {
+        Auth.deauthenticateUser();
+
+        // change the current URL to /
+        replace('/');
+      }
+    }
+
+  ]
+};
 
 export default routes;
 
@@ -75,8 +119,8 @@ export default routes;
 //     res.redirect('/');
 // });
 
-router.get('/ping', function(req, res){
-  res.status(200).send("pong!");
-});
+// router.get('/ping', function(req, res){
+//   res.status(200).send("pong!");
+// });
 
-module.exports = router;
+// module.exports = router;
