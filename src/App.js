@@ -29,6 +29,8 @@ import Results from './components/Results';
 import Footer from './components/common/Footer';
 import Banner from './components/common/Banner';
 import Featured from './components/Featured';
+import Saved from './components/Saved';
+
 
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();
@@ -134,10 +136,12 @@ class App extends Component {
             <div className="top-bar">
               <div className="top-bar-left">
                 <Link to="/">Outdoorsy</Link>
-              </div>
 
+              </div>
+           
                 {this.state.authenticated ? (
                   <div className="top-bar-right">
+                    <Link to='/Saved'> Saved Adventures </Link>
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/logout">Log out</Link>
                   </div>
@@ -146,6 +150,7 @@ class App extends Component {
                     <Link to="/login">Log in</Link>
                     <Link to="/signup">Sign up</Link>
                   </div>
+                  
                 )}
             </div>
 
@@ -159,6 +164,8 @@ class App extends Component {
               path="/dashboard" 
               component={DashboardPage}
             />
+
+            
             <LoggedOutRoute 
               path="/login" 
               component={LoginPage} 
@@ -179,13 +186,17 @@ class App extends Component {
                     setParent={this.setParent}
                   />
 
-                  <Footer />
                   
                   <Switch>
-                    <Route path="/Results" render={ResultsPageProps}/>
+                   <Route path="/Saved" component ={Saved}/>
+                    <Route path="/Results" component={ResultsPageProps}/>
                     <Route path="/" component ={Featured}/>
+                   
                   </Switch>
-              
+            
+               
+
+              <Footer />
               </Row> 
               </Grid>
             
