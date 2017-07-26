@@ -92,6 +92,7 @@ class App extends Component {
     })
     .then((googleAPI) => {
       this.setState({apiLoaded: true, googleAPI: googleAPI});
+
       }).catch((err) => {
       console.error(err)
     });
@@ -110,6 +111,8 @@ class App extends Component {
       searchRadius: newSearchRadius,
       results: newResults
     });
+
+
   }
 
   render() {
