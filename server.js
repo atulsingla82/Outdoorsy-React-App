@@ -1,111 +1,68 @@
 // Include Server Dependencies
-const express = require("express");
-const path = require("path");
-const logger = require("morgan");
-const cookieParser = require('cookie-parser')
-const bodyParser = require("body-parser");
-const expressValidator = require("express-validator");
-const flash = require("connect-flash");
-const session = require("express-session");
+const express = require("express"); 
 const passport = require("passport");
-const LocalStrategy = require('passport-local').Strategy;
-const mongoose = require("mongoose");
-var router = express.Router();
+const config = require('./config');
+const bodyParser = require("body-parser");
+// const favicon = require('serve-favicon');
+const logger = require("morgan");
+// const mongoose = require("mongoose");
 
-// const routes = require('./routes/index');
-// const users = require('./routes/users');
-
-// referencing the DBs
-const User = require("./models/User");
-const Adventure = require("./models/Adventure");
-
+// connect to the mongo database and load models
+require('./models').connect(config.dbUri);
 
 const controller = require("./controllers/controller");
 
 // Create Instance of Express
 const app = express();
+let PORT = process.env.PORT || 3000;
 
-// Sets an initial port. We'll use this later in our listener
-const PORT = process.env.PORT || 3000;
-
-// Run Morgan for Logging
-app.use(logger("dev"));
-// cookie-parser for passport secret
-app.use(cookieParser()); 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false })); // => T to F
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
-
-app.use(express.static("./public")); 
-
-
-// Connect to mongoose
-mongoose.connect('mongodb://127.0.0.1:27017/Outdoorsy2', {
-  useMongoClient: true
-  /* other options */
-});
-const db = mongoose.connection;
-
-
-
-db.on("error", function(err) {
-  console.log("Mongoose Error: ", err);
-});
-
-db.once("open", function() {
-  console.log("Mongoose connection successful.");
-});
-
+// static files
+app.use(express.static("./public"));
+app.use(express.static(
+  process.cwd() + '/public')
+);
 
 // Run Morgan for Logging
 app.use(logger("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false })); 
-// F for M herman
-app.use(cookieParser()); // for passport secret
+app.use(bodyParser.urlencoded({ 
+  extended: false 
+})); 
+app.use(bodyParser.text()); //?
+// app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 
-//express + passport
-app.use(require('express-session')({
-  secret: '****',
-  resave: false,
-  saveUninitialized: false
-}));
+// ========== PASSPORT ==========
 app.use(passport.initialize());
 app.use(passport.session());
 
+// load passport strategies
+const localSignupStrategy = require('./passport/local-signup');
+const localLoginStrategy = require('./passport/local-login');
+passport.use('local-signup', localSignupStrategy);
+passport.use('local-login', localLoginStrategy);
 
-app.use(express.static("./public")); 
-// app.use(express.static(path.join(__dirname, 'public')));
+// pass the authenticaion checker middleware
+const authCheckMiddleware = require('./middleware/auth-check');
+app.use('/api', authCheckMiddleware);
 
-// app.use('/', routes);
-
-// app.use(bodyParser.text());
-// app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
-// config passport
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-
-
+//setting up routes
+const mainRoute = require('./controllers/main-route.js');
+const apiRoutes = require('./controllers/api-route.js');
+const authRoutes = require('./controllers/auth.js');
+// app.use('/', mainRoute); // To change
+app.use('/api', apiRoutes);
+app.use('/auth', authRoutes);
+app.use('/', controller);
 
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  const err = new Error('Not Found');
-  err.status = 404
-  next(err);
+  // const err = new Error('Not Found');
+  // err.status = 404
+  // next(err);
+  res.send("not found")
 });
-
-
-// referencing routes using self executing function
-//require("./controllers/controller")(app);
-app.use('/', controller);
-
 
 
 
@@ -118,49 +75,33 @@ app.use('/', controller);
 // });
 
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-      res.status(err.status || 500);
-      res.render('error', {
-          message: err.message,
-          error: err
-      });
-  });
-}
+// // development error handler
+// // will print stacktrace
+// if (app.get('env') === 'development') {
+//   app.use(function(err, req, res, next) {
+//       res.status(err.status || 500);
+//       res.render('error', {
+//           message: err.message,
+//           error: err
+//       });
+//   });
+// }
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
+// // production error handler
+// // no stacktraces leaked to user
+// app.use(function(err, req, res, next) {
+//     res.status(err.status || 500);
+//     res.send('error', {
+//         message: err.message,
+//         error: {}
+//     });
+// });
 
 // Listener
 app.listen(PORT, function() {
   console.log("App listening on PORT: " + PORT);
 });
 
-
-
-router.get('/ping', function(req, res){
-  res.status(200).send("pong!");
-});
-
-// //test
-app.get("/test", function (req, res) {
-  console.log("test success")
-  res.send("success 2");
-});
-
-app.get("/", function (req, res) {
-  console.log("local ");
-  res.send("local - /");
-})
 
 
 module.exports = app;

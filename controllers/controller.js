@@ -24,3 +24,4 @@ Adventure.create({
 module.exports = router;
 
 
+
