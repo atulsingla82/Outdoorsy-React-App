@@ -18,13 +18,7 @@ var AdventureSchema = new Schema ({
 		type: Date,
 		required: true
 	},
-	// time: {
-	// 	type: String // is this correct?
-	// },
-	invitees: {
-		type: Array,
-		required: false
-	}
+
 })
 
 

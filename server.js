@@ -20,6 +20,9 @@ const User = require("./models/User");
 const Adventure = require("./models/Adventure");
 
 
+const controller = require("./controllers/controller");
+
+// Create Instance of Express
 const app = express();
 
 // Sets an initial port. We'll use this later in our listener
@@ -100,7 +103,11 @@ app.use((req, res, next) => {
 
 
 // referencing routes using self executing function
-require("./controllers/controller")(app);
+//require("./controllers/controller")(app);
+app.use('/', controller);
+
+
+
 
 
 // // catch 404 and forward to error handler
