@@ -17,7 +17,7 @@ export default class SearchForm extends Component {
             searchRadius: null,
             results: []
         }
-  }
+    }
 
     componentDidUpdate() {
         this.getLocation();
@@ -25,6 +25,11 @@ export default class SearchForm extends Component {
 
     getLocation() {
         const googleAPI = this.props.googleAPI;
+        const LatLngBounds = googleAPI.LatLngBounds;
+
+        console.log(googleAPI);
+        console.log(googleAPI.LatLngBounds);
+
         const input = document.getElementById('autocomplete');
         const defaultBounds = new googleAPI.LatLngBounds(
             googleAPI.LatLng(-90, -180),
@@ -33,6 +38,7 @@ export default class SearchForm extends Component {
             types: ['(cities)'],
             bounds: defaultBounds
         }
+
         const autocomplete = new googleAPI.places.Autocomplete(input, options);
         const onPlaceChanged = () => {
             const place = autocomplete.getPlace();
