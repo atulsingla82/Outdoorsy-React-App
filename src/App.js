@@ -1,4 +1,4 @@
-import React, { Component, Switch } from 'react';
+import React, { Component } from 'react';
 import {  Grid, Row, Col} from 'react-bootstrap';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -12,21 +12,20 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
+  Switch,
   Redirect,
   withRouter
 } from 'react-router-dom'
 
-// import Base from './components/common/components/Base.jsx';
 import HomePage from './components/common/components/HomePage.jsx';
 import LoginPage from './components/common/containers/LoginPage.jsx';
 import LogoutFunction from './components/common/containers/LogoutFunction.jsx';
 import SignUpPage from './components/common/containers/SignUpPage.jsx';
 import DashboardPage from './components/common/components/Dashboard.jsx';
 
-//
-// import SearchForm from './components/SearchForm';
-// import Results from './components/Results';
-// // import Header from './components/common/Header';
+
+import SearchForm from './components/SearchForm';
+import Results from './components/Results';
 import Footer from './components/common/Footer';
 import Banner from './components/common/Banner';
 import Featured from './components/Featured';
@@ -69,38 +68,33 @@ const PropsRoute = ({ component: Component, ...rest }) => (
 class App extends Component {
   constructor(props) {
     super(props);
+    this.setParent = this.setParent.bind(this);
     this.state = {
-      authenticated: false
+      authenticated: false,
+      lat: null,
+      lng: null,
+      activity: "",
+      searchRadius: null,
+      apiLoaded: false,
+      results: []
     }
-  };
+  }
 
-  // constructor(props) {
-  //   super(props);
-    // this.setParent = this.setParent.bind(this);
-    // this.state = {
-    //     lat: null,
-    //     lng: null,
-    //     activity: "",
-    //     searchRadius: null,
-    //     apiLoaded: false,
-    //     results: [],
-  //   }
-  // }
 
   componentDidMount() {
     // check if user is logged in on refresh
     this.toggleAuthenticateStatus(); // auth 
 
   //   /* Loads the Google Maps API with Places library into this component */ 
-  //   loadGoogleMapsAPI({
-  //     key: 'AIzaSyCUX8t_7WDEjYpCH34o4MPRPREZi_HpOzo',
-  //     libraries: ["places"]
-  //   })
-  //   .then((googleAPI) => {
-  //     this.setState({apiLoaded: true, googleAPI: googleAPI});
-  //     }).catch((err) => {
-  //     console.error(err)
-  //   });
+    loadGoogleMapsAPI({
+      key: 'AIzaSyCUX8t_7WDEjYpCH34o4MPRPREZi_HpOzo',
+      libraries: ["places"]
+    })
+    .then((googleAPI) => {
+      this.setState({apiLoaded: true, googleAPI: googleAPI});
+      }).catch((err) => {
+      console.error(err)
+    });
   }
 
   toggleAuthenticateStatus() {
@@ -108,28 +102,31 @@ class App extends Component {
     this.setState({ authenticated: Auth.isUserAuthenticated() })
   }
 
-  // setParent(newLat, newLng, newActivity, newSearchRadius, newResults) {
-  //   this.setState({
-  //     lat: newLat, 
-  //     lng: newLng, 
-  //     activity: newActivity, 
-  //     searchRadius: newSearchRadius,
-  //     results: newResults
-  //   });
-  // }
+  setParent(newLat, newLng, newActivity, newSearchRadius, newResults) {
+    this.setState({
+      lat: newLat, 
+      lng: newLng, 
+      activity: newActivity, 
+      searchRadius: newSearchRadius,
+      results: newResults
+    });
+  }
 
   render() {
-    // const ResultsPageProps = (props) => {
-    //   return (
-    //     <Results
-    //     places={this.state.results}
-    //     activity={this.state.activity}
-    //     googleAPI={this.state.googleAPI}
-    //     queryPlaces={this.queryPlaces}
-    //     {...props}
-    //     />  
-    //   )
-    // }
+    const ResultsPageProps = (props) => {
+      return (
+        <Results
+        places={this.state.results}
+        activity={this.state.activity}
+        googleAPI={this.state.googleAPI}
+        queryPlaces={this.queryPlaces}
+        authenticated={this.state.authenticated}
+        {...props}
+        /> 
+
+
+      )
+    }
       return ( 
        <MuiThemeProvider muiTheme={getMuiTheme()}>
         <Router>
@@ -175,25 +172,24 @@ class App extends Component {
             />
             <Route path="/logout" component={LogoutFunction}/>
           </div>
-            {/*
-            GOOGLE PLACES API FUNCTIONALITY */}
+
               <Grid>
               <Row className = "show-grid">
-              <div>
-                
-              </div>
-                  {/*
+                  
                   <SearchForm 
                     googleAPI={this.state.googleAPI} 
-                    setParent={this.setParent}/>
-                <Switch>
-                  <Route path="/Results" render={ResultsPageProps}/>
-                  <Route path="/" component ={Featured}/>
-                </Switch>
-              */}
+                    setParent={this.setParent}
+                  />
+
+                  <Footer />
+                  
+                  <Switch>
+                    <Route path="/Results" render={ResultsPageProps}/>
+                    <Route path="/" component ={Featured}/>
+                  </Switch>
+              
               </Row> 
               </Grid>
-
             
           </div>
         </Router>

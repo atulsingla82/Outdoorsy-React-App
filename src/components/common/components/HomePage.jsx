@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import Auth from '../modules/Auth';
 import Banner from '../Banner';
+import Featured from "../../Featured";
 
 class HomePage extends React.Component {
 
