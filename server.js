@@ -10,6 +10,9 @@ const logger = require("morgan");
 // connect to the mongo database and load models
 require('./models').connect(config.dbUri);
 
+const controller = require("./controllers/controller");
+
+// Create Instance of Express
 const app = express();
 let PORT = process.env.PORT || 3000;
 
@@ -27,25 +30,6 @@ app.use(bodyParser.urlencoded({
 })); 
 app.use(bodyParser.text()); //?
 // app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
-
-
-
-// // Connect to Mongoose
-// mongoose.connect('mongodb://127.0.0.1:27017/Outdoorsy2', {
-//   useMongoClient: true
-//   /* other options */
-// });
-// const db = mongoose.connection;
-
-// db.on("error", function(err) {
-//   console.log("Mongoose Error: ", err);
-// });
-
-// db.once("open", function() {
-//   console.log("Mongoose connection successful.");
-// });
-
 
 
 // ========== PASSPORT ==========
@@ -66,10 +50,10 @@ app.use('/api', authCheckMiddleware);
 const mainRoute = require('./controllers/main-route.js');
 const apiRoutes = require('./controllers/api-route.js');
 const authRoutes = require('./controllers/auth.js');
-app.use('/', mainRoute);
+// app.use('/', mainRoute); // To change
 app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
-
+app.use('/', controller);
 
 
 // catch 404 and forward to error handler
@@ -81,8 +65,7 @@ app.use((req, res, next) => {
 });
 
 
-// referencing routes using self executing function
-// require("./controllers/controller")(app);
+
 
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {

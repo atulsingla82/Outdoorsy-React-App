@@ -45,13 +45,48 @@ UserSchema.pre('save', function saveHook(next) {
       return next();
     });
   });
-});
 
 module.exports = mongoose.model('User', UserSchema);
 
-// const mongoose = require('mongoose');
-// const bcrypt = require('bcrypt');
 
+  
+// const Schema = mongoose.Schema;
+// const passportLocalMongoose = require('passport-local-mongoose');
+
+// const UserSchema = new Schema({
+//   firstname: {
+//     type: String, 
+//     select: false,
+//     trim: true,
+//     required: true
+//   },
+//   lastname: {
+//     type: String, 
+//     required: false
+//   },
+//   emailaddress: {
+//     type: String, 
+//     unique: true,
+//     match: [/.+\@.+\..+/, "Please enter a valid e-mail address"],
+//     required: false
+//   },
+//   password: {
+//     type: String, 
+//     unique: true,
+//     required: true,
+//     validate: [
+//       function(input) {
+//         return input.length >= 6;
+//       },
+//       "Password should be longer."
+//     ] 
+//   }
+
+// });
+
+  
+// =======
+  
 // const UserSchema = new mongoose.Schema({
 // 	firstname: {
 // 		type: String, 
@@ -118,3 +153,4 @@ module.exports = mongoose.model('User', UserSchema);
 
 
 // module.exports = mongoose.model('User', UserSchema);
+

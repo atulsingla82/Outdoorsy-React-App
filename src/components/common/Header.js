@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Button,Nav, NavItem, Navbar} from 'react-bootstrap';
 import Login from './Login.js';
-import Register from './Register.js';
+
+// import Register from './Register.js';
+// import Register from '../Register.js';
 import { Switch, Redirect, Link, Route, BrowserRouter as Router } from 'react-router-dom';
 
 
