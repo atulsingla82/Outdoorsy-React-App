@@ -49,6 +49,7 @@ UserSchema.pre('save', function saveHook(next) {
 module.exports = mongoose.model('User', UserSchema);
 
 
+
   
 // const Schema = mongoose.Schema;
 // const passportLocalMongoose = require('passport-local-mongoose');
@@ -153,4 +154,5 @@ module.exports = mongoose.model('User', UserSchema);
 
 
 // module.exports = mongoose.model('User', UserSchema);
+
 
