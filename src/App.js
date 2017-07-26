@@ -123,8 +123,6 @@ class App extends Component {
         authenticated={this.state.authenticated}
         {...props}
         /> 
-
-
       )
     }
       return ( 
