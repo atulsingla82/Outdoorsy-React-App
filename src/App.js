@@ -7,7 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import loadGoogleMapsAPI from 'load-google-maps-api';
 
 import Auth from './components/common/modules/Auth';
-// import './styles/App.css';
+import './app.scss';
 import {
   BrowserRouter as Router,
   Route,
@@ -48,7 +48,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
-const LoggedOutRoute = ({ component: Component, ...rest }) => (
+const LoggedOutRoute = ({ component: Component,...rest }) => (
   <Route {...rest} render={props => (
     Auth.isUserAuthenticated() ? (
       <Redirect to={{
@@ -61,7 +61,7 @@ const LoggedOutRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
-const PropsRoute = ({ component: Component, ...rest }) => (
+const PropsRoute = ({ component: Component,...rest }) => (
   <Route {...rest} render={props => (
     <Component {...props} {...rest} />
   )}/>
