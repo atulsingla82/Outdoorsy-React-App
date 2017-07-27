@@ -10,17 +10,18 @@ class DashboardPage extends React.Component {
    */
   constructor(props) {
     super(props);
-
     this.state = {
       secretData: '',
       user: {}
     };
+   
   }
 
   /**
    * This method will be executed after initial rendering.
    */
-  componentDidMount() {
+  componentWillMount() { // used to be componentDidMount()
+ 
     const xhr = new XMLHttpRequest();
     xhr.open('get', '/api/dashboard');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -42,8 +43,11 @@ class DashboardPage extends React.Component {
    * Render the component.
    */
   render() {
-    return (<Dashboard secretData={this.state.secretData} user={this.state.user} />);
+    return (
+      <Dashboard secretData={this.state.secretData}  user={this.state.user}/>
+      );
   }
+
 
 }
 
