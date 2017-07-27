@@ -53,9 +53,10 @@ class LoginPage extends React.Component {
     xhr.open('post', '/auth/login');
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.responseType = 'json';
-    xhr.addEventListener('load', () => {
+    xhr.addEventListener('load', (res) => {
       if (xhr.status === 200) {
         // success
+        console.log(xhr.response);
 
         // change the component-container state
         this.setState({
