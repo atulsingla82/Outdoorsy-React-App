@@ -9,7 +9,7 @@ const Dashboard = ({ secretData, user }) => (
       subtitle="Saved Adventures"
     />
 
-    {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>Welcome <strong>{user.name}</strong>!<br />{secretData}</CardText>}
+    {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>Welcome <strong>{user.name}</strong>!<br /></CardText>}
 
   <Saved />
   {/*Saved adventures component here with prop being passed from here (user.id) 

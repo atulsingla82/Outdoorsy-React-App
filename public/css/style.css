@@ -54,6 +54,14 @@ a:hover {
 form:after{
   clear:both;
 }
+/*
+.save-left {
+  float:left;
+}
+
+.saved-right {
+  float:right;
+}*/
 
 .container-top {
   width: 80%;
