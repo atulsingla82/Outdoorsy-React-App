@@ -5,13 +5,13 @@ import Saved from '../../Saved';
 const Dashboard = ({ secretData, user }) => (
   <Card className="container">
     <CardTitle
-      title="Dashboard"
-      subtitle="Saved Adventures"
+     
+      
     />
 
-    {secretData && <CardText style={{ fontSize: '16px', color: 'green' }}>Welcome <strong>{user.name}</strong>!<br /></CardText>}
+    {secretData && <CardText style={{ fontSize: '30px', color: 'green' }}>Welcome <strong>{user.name}</strong>!<br /></CardText>}
 
-  <Saved />
+  
   {/*Saved adventures component here with prop being passed from here (user.id) 
   */
   console.log("test")

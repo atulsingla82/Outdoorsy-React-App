@@ -146,7 +146,7 @@ class App extends Component {
            
                 {this.state.authenticated ? (
                   <div className="top-bar-right">
-                   
+                   <Link to="/Saved">Saved Adventures</Link>
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/logout">Log out</Link>
                   </div>
@@ -192,7 +192,7 @@ class App extends Component {
 
                   
                   <Switch>
-                   
+                     <Route path="/Saved" component={Saved}/>
                     <Route path="/Results" component={ResultsPageProps}/>
                     <Route path="/" component ={Featured}/>
                    
