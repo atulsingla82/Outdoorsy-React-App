@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack -w & nodemon server ",
-    "start": "node server.js webpack -w",
-     "build": "webpack --config ./webpack.config.js --progress --colors",
-     "postinstall": "npm run build"
+    "start": "npm run build && NODE_ENV=production node server.js",
+    "build": "webpack --config webpack.config.js"
+    
   },
   "author": "",
   "license": "ISC",
