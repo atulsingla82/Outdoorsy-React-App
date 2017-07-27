@@ -3,9 +3,7 @@ module.exports = {
   entry: "./src/index.js",
   // The plain compiled JavaScript will be output into this file
   output: {
-    path: path.join(__dirname, 'public'),
-    filename: 'bundle.js',
-    publicPath: '/public/'
+    filename: "public/bundle.js"
   },
   // This section desribes the transformations we will perform
   module: {
