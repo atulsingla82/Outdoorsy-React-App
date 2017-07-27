@@ -7,7 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 import loadGoogleMapsAPI from 'load-google-maps-api';
 
 import Auth from './components/common/modules/Auth';
-// import './styles/App.css';
+import './app.scss';
 import {
   BrowserRouter as Router,
   Route,
@@ -29,6 +29,8 @@ import Results from './components/Results';
 import Footer from './components/common/Footer';
 import Banner from './components/common/Banner';
 import Featured from './components/Featured';
+import Saved from './components/Saved';
+
 
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();
@@ -46,7 +48,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
-const LoggedOutRoute = ({ component: Component, ...rest }) => (
+const LoggedOutRoute = ({ component: Component,...rest }) => (
   <Route {...rest} render={props => (
     Auth.isUserAuthenticated() ? (
       <Redirect to={{
@@ -59,7 +61,7 @@ const LoggedOutRoute = ({ component: Component, ...rest }) => (
   )}/>
 )
 
-const PropsRoute = ({ component: Component, ...rest }) => (
+const PropsRoute = ({ component: Component,...rest }) => (
   <Route {...rest} render={props => (
     <Component {...props} {...rest} />
   )}/>
@@ -137,10 +139,12 @@ class App extends Component {
             <div className="top-bar">
               <div className="top-bar-left">
                 <Link to="/">Outdoorsy</Link>
-              </div>
 
+              </div>
+           
                 {this.state.authenticated ? (
                   <div className="top-bar-right">
+                    <Link to='/Saved'> Saved Adventures </Link>
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/logout">Log out</Link>
                   </div>
@@ -149,6 +153,7 @@ class App extends Component {
                     <Link to="/login">Log in</Link>
                     <Link to="/signup">Sign up</Link>
                   </div>
+                  
                 )}
             </div>
 
@@ -162,6 +167,8 @@ class App extends Component {
               path="/dashboard" 
               component={DashboardPage}
             />
+
+            
             <LoggedOutRoute 
               path="/login" 
               component={LoginPage} 
@@ -182,13 +189,17 @@ class App extends Component {
                     setParent={this.setParent}
                   />
 
-                  <Footer />
                   
                   <Switch>
-                    <Route path="/Results" render={ResultsPageProps}/>
+                   <Route path="/Saved" component ={Saved}/>
+                    <Route path="/Results" component={ResultsPageProps}/>
                     <Route path="/" component ={Featured}/>
+                   
                   </Switch>
-              
+            
+               
+
+              <Footer />
               </Row> 
               </Grid>
             
