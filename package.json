@@ -5,9 +5,9 @@
   "main": "public/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress --colors",
     "dev": "webpack -w & nodemon server ",
-    "start": "node server.js "
+    "start": "node server.js",
+    "build": "webpack -w"
   },
   "author": "",
   "license": "ISC",
@@ -40,7 +40,6 @@
     "react-router-dom": "^4.1.2",
     "react-tap-event-plugin": "^2.0.1",
     "sass-loader": "^6.0.6",
-    "serve-favicon": "^2.4.3",
     "style-loader": "^0.18.2",
     "validator": "^7.0.0"
   },
