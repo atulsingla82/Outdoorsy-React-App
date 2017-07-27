@@ -5,9 +5,11 @@
   "main": "public/index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack -w",
+    
     "dev": "webpack -w & nodemon server ",
-    "start": "nodemon server "
+    "start": "node server.js",
+    "build": "webpack -w"
+  
   },
   "author": "",
   "license": "ISC",
