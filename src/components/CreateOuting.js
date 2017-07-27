@@ -6,14 +6,12 @@ import helpers from './utils/helpers';
 export default class CreateOuting extends Component {
   constructor(props) {
       super(props);
-      // get initial state
+      // set initial state
       // location and activity are passed in as props and used
       // to populate corresponding form elements, but date must
       // be selected by user with datepicker
       this.state = {
         visible : false,
-        location: props.selectedPlace.name,
-        activity: props.activity,
         date: {}
       }
       this.openModal = this.openModal.bind(this);
@@ -47,14 +45,17 @@ export default class CreateOuting extends Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();
-    console.log("The event is")
-    console.log(event);
-    console.log("The state is")
-    console.log(this.state);
-    console.log("executing createOuting")
-    /*TODO: Code for POSTing to MongoDB goes here?*/
-    helpers.createOuting(this.state);
+
+    //Create an object that captures the props and the
+    //value of state that was set in the handleChange event
+    let formData = {
+      location: this.props.selectedPlace.name,
+      activity: this.props.activity,
+      date: this.state.date
+    };
+
+    // Invoke helper function to post to database
+    helpers.createOuting(formData);
   }
 
   render() {

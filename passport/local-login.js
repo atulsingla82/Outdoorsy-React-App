@@ -43,6 +43,7 @@ module.exports = new PassportLocalStrategy({
       const payload = {
         sub: user._id
       };
+      console.log("checkpoint 1 " + user._id); //added by Claude for testing
 
       // create a token string
       const token = jwt.sign(payload, config.jwtSecret);
@@ -50,7 +51,7 @@ module.exports = new PassportLocalStrategy({
         name: user.name,
         id: user._id
       };
-
+      console.log("checkpoint 2 " + user.name);  //added by Claude for testing
       return done(null, token, data);
     });
   });
