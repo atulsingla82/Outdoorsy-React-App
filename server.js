@@ -16,11 +16,42 @@ const controller = require("./controllers/controller");
 const app = express();
 let PORT = process.env.PORT || 3000;
 
+
 // static files
 app.use(express.static("./public"));
 app.use(express.static(
   process.cwd() + '/public')
 );
+
+// Sets an initial port. We'll use this later in our listener
+// const PORT = process.env.PORT || 3000;
+
+
+// //bring in the models
+// const User = require('./models/User');
+// const Adventure = require('./models/Adventure')
+
+
+//Connect to Mongoose
+
+// mongoose.connect("mongodb://127.0.0.1:27017/Outdoorsy2")
+// const db = mongoose.connection;
+
+
+// // Connect to mongoose
+// // const db = mongoose.connect('mongodb://127.0.0.1:27017/outdoorsy', {
+// //   useMongoClient: true
+// //   /* other options */
+// // });
+
+// db.on("error", function(err) {
+//   console.log("Mongoose Error: ", err);
+// });
+
+// db.once("open", function() {
+//   console.log("Mongoose connection successful.");
+// });
+
 
 // Run Morgan for Logging
 app.use(logger("dev"));
@@ -65,8 +96,6 @@ app.use((req, res, next) => {
 });
 
 
-
-
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {
 //   const err = new Error('Not Found');
@@ -103,5 +132,6 @@ app.listen(PORT, function() {
 });
 
 
-
 module.exports = app;
+
+
