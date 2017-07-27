@@ -9,7 +9,7 @@ const logger = require("morgan");
 
 var uri = process.env.MONGODB_URI || config.dbUri;
 // connect to the mongo database and load models
-require('./models').connect(config.dbUri);
+require('./models').connect(uri);
 
 const controller = require("./controllers/controller");
 
