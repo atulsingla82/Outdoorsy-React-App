@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 // const mongoose = require("mongoose");
 
+var uri = process.env.MONGODB_URI || config.dbUri;
 // connect to the mongo database and load models
 require('./models').connect(config.dbUri);
 
