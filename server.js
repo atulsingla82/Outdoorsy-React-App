@@ -5,7 +5,7 @@ const config = require('./config');
 const bodyParser = require("body-parser");
 // const favicon = require('serve-favicon');
 const logger = require("morgan");
-// const mongoose = require("mongoose");
+//const mongoose = require("mongoose");
 
 // connect to the mongo database and load models
 require('./models').connect(config.dbUri);
@@ -21,6 +21,8 @@ app.use(express.static("./public"));
 app.use(express.static(
   process.cwd() + '/public')
 );
+
+
 
 // Run Morgan for Logging
 app.use(logger("dev"));
