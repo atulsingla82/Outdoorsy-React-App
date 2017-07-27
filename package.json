@@ -7,7 +7,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack -w & nodemon server ",
     "start": "node server.js",
-    "build": "webpack -w"
+    "build": "NODE_ENV=production webpack -w",
+    "build-dist": "webpack --progress"
+
+    
   },
   "author": "",
   "license": "ISC",

@@ -138,7 +138,9 @@ class App extends Component {
            {/* NEW HEADER W/ AUTHENTICATION TOGGLE DISPLAY */}
             <div className="top-bar">
               <div className="top-bar-left">
-                <Link to="/">Outdoorsy</Link>
+                <Link to="/">
+                <img src="./images/icon.png" height="40" width="40" />
+                </Link>
 
               </div>
            

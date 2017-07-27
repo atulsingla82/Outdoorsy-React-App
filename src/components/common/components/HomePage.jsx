@@ -15,17 +15,17 @@ class HomePage extends React.Component {
     return (
       <Card className="container">
       <Banner />
-        <CardTitle 
+        {/*<CardTitle 
           title="Outdoorsy" 
           subtitle="This is the home page." 
-        />
+        />*/}
           {Auth.isUserAuthenticated() ? (
-            <CardText style={{ fontSize: '16px', color: 'green' }} >
-              Welcome! You are logged in.
+            <CardText style={{ fontSize: '16px', color: 'green', }} >
+              <p>Welcome! Search to start planning your adventure.</p>
             </CardText>
           ) : (
             <CardText style={{ fontSize: '16px', color: 'green' }}>
-              You are not logged in.
+              <p> Log in to get started!</p>
             </CardText>
           )}
       </Card>
