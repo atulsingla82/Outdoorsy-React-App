@@ -21,7 +21,7 @@ import HomePage from './components/common/components/HomePage.jsx';
 import LoginPage from './components/common/containers/LoginPage.jsx';
 import LogoutFunction from './components/common/containers/LogoutFunction.jsx';
 import SignUpPage from './components/common/containers/SignUpPage.jsx';
-import DashboardPage from './components/common/components/Dashboard.jsx';
+import DashboardPage from './components/common/containers/DashboardPage.jsx';
 
 
 import SearchForm from './components/SearchForm';
@@ -94,6 +94,7 @@ class App extends Component {
     })
     .then((googleAPI) => {
       this.setState({apiLoaded: true, googleAPI: googleAPI});
+
       }).catch((err) => {
       console.error(err)
     });
@@ -112,6 +113,8 @@ class App extends Component {
       searchRadius: newSearchRadius,
       results: newResults
     });
+
+
   }
 
   render() {
@@ -165,7 +168,6 @@ class App extends Component {
               component={DashboardPage}
             />
 
-            
             <LoggedOutRoute 
               path="/login" 
               component={LoginPage} 
