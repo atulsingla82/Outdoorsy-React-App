@@ -6,9 +6,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack -w & nodemon server ",
-    "start": "node server.js",
+    
     "build": "webpack -w",
-    "build-dist": "webpack --progress"
+   
+    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "prod": "NODE_ENV=production node server.js",
+    "postinstall": "webpack -p"
     
   },
   "author": "",
