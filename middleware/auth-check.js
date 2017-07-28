@@ -22,12 +22,12 @@ module.exports = (req, res, next) => {
     const userId = decoded.sub;
 
     // check if a user exists
-    return User.findById(userId, (userErr, user) => {
+    return User.findById(userId, (userErr, user, userId) => {
       if (userErr || !user) {
         return res.status(401).end(); // unauthorized
       }
       // pass user details onto next route
-      req.user = user
+         req.user = user
       return next();
     });
   });

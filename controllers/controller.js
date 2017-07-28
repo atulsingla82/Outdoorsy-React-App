@@ -7,22 +7,22 @@ const Adventure = require("../models/Adventure");
 
 
 router.post("/createOuting", function(req, res){
+  console.log(req.body.location)
   Adventure.create({
     location: req.body.location,
     activity: req.body.activity,
     date: req.body.date
-  }), function(err){
+  }, function(err){
       if (err){
         console.log(err);
       }
       else {
-        res.send("New outing created!");
-        // res.status(200).json({
-          
-        // })
-        // console.log("New outing created!")
+        res.status(201).json({
+          success: true,
+          message: 'Successfully posted Adventure to database!'
+        });
       }
-    }
+    })
 })
 
 router.get("/viewOuting", function(req, res){

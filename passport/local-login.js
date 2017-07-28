@@ -48,7 +48,8 @@ module.exports = new PassportLocalStrategy({
       // create a token string
       const token = jwt.sign(payload, config.jwtSecret);
       const data = {
-        name: user.name
+        name: user.name,
+        id: user._id
       };
       console.log("checkpoint 2 " + user.name);  //added by Claude for testing
       return done(null, token, data);

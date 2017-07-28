@@ -17,17 +17,24 @@ export default class SearchForm extends Component {
             searchRadius: null,
             results: []
         }
-  }
+    }
 
     componentDidUpdate() {
         //this.getLocation();
         if(this.props.googleAPI != undefined){
              this.getLocation();
         }  
+
     }
 
     getLocation() {
+        console.log(this.props)
         const googleAPI = this.props.googleAPI;
+        const LatLngBounds = this.props.googleAPI.LatLngBounds;
+
+        // console.log(googleAPI);
+        // console.log(googleAPI.LatLngBounds);
+
         const input = document.getElementById('autocomplete');
         const defaultBounds = new googleAPI.LatLngBounds(
             googleAPI.LatLng(-90, -180),
@@ -36,6 +43,7 @@ export default class SearchForm extends Component {
             types: ['(cities)'],
             bounds: defaultBounds
         }
+
         const autocomplete = new googleAPI.places.Autocomplete(input, options);
         const onPlaceChanged = () => {
             const place = autocomplete.getPlace();
@@ -98,9 +106,11 @@ export default class SearchForm extends Component {
                 type="text">
             </input>
         </div>
+        <br />
         <form onSubmit={this.handleSubmit}>
+          <div className="container-top">
             <div className = "container-button">
-                <ButtonGroup bsSize = "large">
+                <ButtonGroup bsSize = "medium">
                     <Button 
                         type="button"
                         name="activity"
@@ -138,8 +148,9 @@ export default class SearchForm extends Component {
                     </Button> 
                   </ButtonGroup>
             </div>
-            <div>
-            <ButtonGroup bsSize = "large">
+            <div className="radius-group">
+            <div className = "container-button-r">
+              <ButtonGroup bsSize = "small">
                 <Button
                     type="button"
                     name="searchRadius"
@@ -161,14 +172,18 @@ export default class SearchForm extends Component {
                     onClick = { this.handleChange }> 
                     30 miles 
                 </Button> 
-            </ButtonGroup> 
+              </ButtonGroup>
+            </div> 
             </div>
+            </div>
+
             <br />
-            <br />
-            <Link to="/Results">
-                <Button onClick={this.queryPlaces}>Submit</Button> 
-            </Link>
-           
+            <div className="onSubmit-search" >
+                <Link to="/Results">
+                    <Button className="button-search" onClick={this.queryPlaces}>Submit</Button> 
+                </Link>
+            </div>
+          
         </form>
             </Well>
         )

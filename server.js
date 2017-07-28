@@ -1,3 +1,4 @@
+
 // Include Server Dependencies
 const express = require("express"); 
 const passport = require("passport");
@@ -7,8 +8,9 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 //const mongoose = require("mongoose");
 
+var uri = process.env.MONGODB_URI || config.dbUri;
 // connect to the mongo database and load models
-require('./models').connect(config.dbUri);
+require('./models').connect(uri);
 
 const controller = require("./controllers/controller");
 
@@ -16,12 +18,12 @@ const controller = require("./controllers/controller");
 const app = express();
 let PORT = process.env.PORT || 3000;
 
+
 // static files
 app.use(express.static("./public"));
 app.use(express.static(
   process.cwd() + '/public')
 );
-
 
 
 // Run Morgan for Logging
@@ -67,8 +69,6 @@ app.use((req, res, next) => {
 });
 
 
-
-
 // // catch 404 and forward to error handler
 // app.use((req, res, next) => {
 //   const err = new Error('Not Found');
@@ -105,5 +105,6 @@ app.listen(PORT, function() {
 });
 
 
-
 module.exports = app;
+
+

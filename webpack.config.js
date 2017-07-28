@@ -1,13 +1,10 @@
 module.exports = {
-
   // This is the entry point or start of our react applicaton
   entry: "./src/index.js",
-
   // The plain compiled JavaScript will be output into this file
   output: {
     filename: "public/bundle.js"
   },
-
   // This section desribes the transformations we will perform
   module: {
     loaders: [
@@ -19,10 +16,18 @@ module.exports = {
         include: /src/,
         loader: "babel-loader",
         query: {
-          presets: ["react", "es2015"],
-          plugins: ["transform-es2015-destructuring", "transform-object-rest-spread"]
+           plugins: [
+           "transform-es2015-destructuring", 
+           "transform-object-rest-spread"
+           ],
+          // These are the specific transformations we'll be using.
+          presets: ["react", "es2015"]
         }
-      }
+      },
+      {
+        test: /\.scss$/,
+        use: [ 'style-loader', 'css-loader', 'sass-loader' ]
+      },
     ]
   },
   // This lets us debug our react code in chrome dev tools. Errors will have lines and file names

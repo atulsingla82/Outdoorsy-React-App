@@ -4,12 +4,12 @@ class Banner extends Component{
 	render() {
 		return ( 
      
-		   <div className="jumbotron" >
+		   <div className="banner" >
+		   <br />
 		    <h1>
-		     
-		    Welcome to Outdoorsy 
-
+		     Outdoorsy 
 		    </h1>
+		    <h2>Get Outside</h2>
 		  </div>	        
 		);
   }
