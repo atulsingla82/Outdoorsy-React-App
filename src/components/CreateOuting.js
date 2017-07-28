@@ -45,7 +45,7 @@ export default class CreateOuting extends Component {
   }
 
   handleSubmit(event) {
-
+    //console.log("userId: " + localStorage.getItem('userId'));
     //Create an object that captures the props and the
     //value of state that was set in the handleChange event
     let formData = {

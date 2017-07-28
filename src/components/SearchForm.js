@@ -20,10 +20,11 @@ export default class SearchForm extends Component {
     }
 
     componentDidUpdate() {
+        //this.getLocation();
         if(this.props.googleAPI != undefined){
              this.getLocation();
-        }
-       
+        }  
+
     }
 
     getLocation() {
