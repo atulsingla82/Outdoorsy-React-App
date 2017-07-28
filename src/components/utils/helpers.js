@@ -17,5 +17,9 @@ export default {
 	// either in state as a prop or in local storage.
 	viewOuting(){
 		return axios.get("/viewOuting")
+	},
+	sendMail(formData) {
+		return axios.get("/sendMail", formData)
 	}
+
 };

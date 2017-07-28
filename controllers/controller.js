@@ -47,6 +47,12 @@ router.get("/viewOuting", function(req, res){
       }
     }
 })
+
+
+router.get("sendMail",formData){
+
+}
+
 module.exports = router;
 
 
