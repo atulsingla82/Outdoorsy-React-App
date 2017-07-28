@@ -3,7 +3,11 @@ const User = require('mongoose').model('User');
 const PassportLocalStrategy = require('passport-local').Strategy;
 const config = require('../config');
 
-
+// localStorage added by Claude 07/28/17
+if (typeof localStorage === "undefined" || localStorage === null) {
+  var LocalStorage = require('node-localstorage').LocalStorage;
+  localStorage = new LocalStorage('./scratch');
+}
 /**
  * Return the Passport Local Strategy object.
  */
@@ -28,7 +32,9 @@ module.exports = new PassportLocalStrategy({
 
       return done(error);
     }
-
+    console.log("checkpoint A: " + userData.email); //added by Claude 07/28/17 
+    localStorage.setItem('User_email', userData.email);
+    console.log("User email: " + localStorage.getItem('User_email'));
     // check if a hashed user's password is equal to a value saved in the database
     return user.comparePassword(userData.password, (passwordErr, isMatch) => {
       if (err) { return done(err); }
@@ -44,7 +50,8 @@ module.exports = new PassportLocalStrategy({
         sub: user._id
       };
       console.log("checkpoint 1 " + user._id); //added by Claude for testing
-
+      localStorage.setItem('userId', user._id);
+      console.log("localStorage.userId: " + localStorage.getItem('userId'));
       // create a token string
       const token = jwt.sign(payload, config.jwtSecret);
       const data = {
