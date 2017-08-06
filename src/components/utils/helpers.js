@@ -13,8 +13,9 @@ export default {
 		return axios.post("/createOuting", formData)
 	},
 
-	// TODO - Add formData parameter after we have a way to save the UserId
-	// either in state as a prop or in local storage.
+	// viewOuting does not take in an argument.  The route
+	// in controller file will obtain the userId from node
+	// local storage on the server side.
 	viewOuting(){
 		return axios.get("/viewOuting")
 	},

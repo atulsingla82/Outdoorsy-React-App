@@ -8,7 +8,7 @@ const Adventure = require("../models/Adventure");
 
 router.post("/createOuting", function(req, res){
   console.log("localStorage.userId: " + localStorage.getItem('userId'));
-  console.log(req.body)
+  console.log(req.body);
   Adventure.create({
     userId: localStorage.getItem('userId'),
     location: req.body.location,
@@ -27,22 +27,22 @@ router.post("/createOuting", function(req, res){
     })
 })
 
+
 router.get("/viewOuting", function(req, res){
   console.log("request body: " + req.body);
   console.log("localStorage.userId: " + localStorage.getItem('userId'));
 
   Adventure.find({
     userId: localStorage.getItem('userId')
-  }), function(err){
-      if (err){
-        console.log(err);
-      }
-      else {
-        res.send("Outings retrieved!");
-        console.log("response status: " + res.status);
-
-      }
+  }).exec(function(err, doc){
+    if (err) {
+      console.log(err);
     }
+    else {
+      console.log(doc);
+      res.send(doc);
+    }
+  });
 })
 
 
