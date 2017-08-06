@@ -111,7 +111,7 @@ export default class SearchForm extends Component {
                 placeholder="Start typing the name of a city or town" 
                 type="text">
             </input>
-            <Link to="/">
+            <Link to="/dashboard">
                 <Button className="clear-search" onClick={this.props.clearSearch}>Clear Search</Button>
             </Link>
         </div>
