@@ -103,11 +103,7 @@ class App extends Component {
 
   clearSearch() {
       this.setState({
-          lat: null,
-          lng: null,
-          activity: "",
-          searchRadius: null,
-          results: []
+        results: [],
       });
       document.getElementById("autocomplete").value = "";
   }

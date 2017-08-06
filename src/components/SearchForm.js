@@ -24,7 +24,6 @@ export default class SearchForm extends Component {
         if(this.props.googleAPI != undefined){
              this.getLocation();
         }  
-
     }
 
     getLocation() {
@@ -80,6 +79,13 @@ export default class SearchForm extends Component {
           service.nearbySearch(request, callback);      
         }
         initialize();
+        this.setState({
+            lat: null,
+            lng: null,
+            activity: "",
+            searchRadius: null,
+            results: []            
+        })
     }
 
     /*  Grabs values from input button groups and stores them in state */
@@ -105,6 +111,9 @@ export default class SearchForm extends Component {
                 placeholder="Start typing the name of a city or town" 
                 type="text">
             </input>
+            <Link to="/">
+                <Button className="clear-search" onClick={this.props.clearSearch}>Clear Search</Button>
+            </Link>
         </div>
         <br />
         <form onSubmit={this.handleSubmit}>
@@ -182,10 +191,8 @@ export default class SearchForm extends Component {
                 <Link to="/Results">
                     <Button className="button-search" onClick={this.queryPlaces}>Submit</Button> 
                 </Link>
-                <Link to="/">
-                    <Button onClick={this.props.clearSearch}>Clear</Button>
-                </Link>
             </div>
+
         </form>
             </Well>
         )

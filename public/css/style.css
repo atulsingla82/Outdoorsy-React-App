@@ -77,6 +77,10 @@ form:after{
     visibility: hidden;
 }
 
+.clear-search {
+    margin-left: 10px; 
+}
+
 .onSubmit-search{
   float: right;
   padding-right: 30px;
@@ -111,7 +115,10 @@ form:after{
 .radius-group {
   width:30%;
   float:right;
+}
 
+.search-bar {
+  padding-right: 10px;
 }
 
 .text-center {
