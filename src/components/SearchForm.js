@@ -182,8 +182,10 @@ export default class SearchForm extends Component {
                 <Link to="/Results">
                     <Button className="button-search" onClick={this.queryPlaces}>Submit</Button> 
                 </Link>
+                <Link to="/">
+                    <Button onClick={this.props.clearSearch}>Clear</Button>
+                </Link>
             </div>
-          
         </form>
             </Well>
         )

@@ -70,6 +70,7 @@ const PropsRoute = ({ component: Component,...rest }) => (
 class App extends Component {
   constructor(props) {
     super(props);
+    this.clearSearch = this.clearSearch.bind(this);
     this.setParent = this.setParent.bind(this);
     this.state = {
       authenticated: false,
@@ -100,6 +101,17 @@ class App extends Component {
     });
   }
 
+  clearSearch() {
+      this.setState({
+          lat: null,
+          lng: null,
+          activity: "",
+          searchRadius: null,
+          results: []
+      });
+      document.getElementById("autocomplete").value = "";
+  }
+
   toggleAuthenticateStatus() {
     // check authenticated status and toggle state based on that
     this.setState({ authenticated: Auth.isUserAuthenticated() })
@@ -123,6 +135,7 @@ class App extends Component {
         <Results
         places={this.state.results}
         activity={this.state.activity}
+        clearSearch={this.clearSearch}
         googleAPI={this.state.googleAPI}
         queryPlaces={this.queryPlaces}
         authenticated={this.state.authenticated}
@@ -186,6 +199,7 @@ class App extends Component {
               <Row className = "show-grid">
                   
                   <SearchForm 
+                    clearSearch={this.clearSearch}
                     googleAPI={this.state.googleAPI} 
                     setParent={this.setParent}
                   />
