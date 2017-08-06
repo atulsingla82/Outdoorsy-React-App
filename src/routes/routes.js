@@ -47,7 +47,7 @@ const routes = {
       path: '/logout',
       onEnter: (nextState, replace) => {
         Auth.deauthenticateUser();
-
+        //TODO - Claude try inserting code here to clear the node local storage
         // change the current URL to /
         replace('/');
       }
