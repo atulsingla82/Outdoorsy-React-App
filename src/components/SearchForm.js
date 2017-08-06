@@ -82,7 +82,6 @@ export default class SearchForm extends Component {
         this.setState({
             lat: null,
             lng: null,
-            activity: "",
             searchRadius: null,
             results: []            
         })
