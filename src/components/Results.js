@@ -27,6 +27,7 @@ export default class Results extends Component {
     )
   }
 
+  
   render() {
     return (
       <div className="panel panel-default">
