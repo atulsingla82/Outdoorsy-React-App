@@ -32,6 +32,9 @@ import Featured from './components/Featured';
 import Saved from './components/Saved';
 
 
+// Helper for making AJAX requests to our API
+import helpers from "./components/utils/helpers";
+
 // remove tap delay, essential for MaterialUI to work properly
 injectTapEventPlugin();
 
@@ -79,7 +82,8 @@ class App extends Component {
       activity: "",
       searchRadius: null,
       apiLoaded: false,
-      results: []
+      results: [],
+      saved:[]
     }
   }
 
@@ -99,6 +103,14 @@ class App extends Component {
       }).catch((err) => {
       console.error(err)
     });
+
+      helpers.viewOuting().then(function (response) {
+            console.log(response);
+            if (response !== this.state.saved) {
+                console.log("Saved", response.data);
+                this.setState({saved: response.data});
+            }
+        }.bind(this));
   }
 
   clearSearch() {
@@ -208,7 +220,7 @@ class App extends Component {
                    
                   </Switch>
             
-               
+                 <Saved saved={this.state.saved}/>
 
               <Footer />
               </Row> 
