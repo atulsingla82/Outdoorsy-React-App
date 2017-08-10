@@ -4,7 +4,7 @@ var Schema = mongoose.Schema;
 var AdventureSchema = new Schema ({
 	userId: {
 		type: String,
-		required: false
+		required: true
 	},
 	location: {
 		type: String,

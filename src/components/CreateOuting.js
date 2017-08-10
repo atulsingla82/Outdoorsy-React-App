@@ -45,9 +45,9 @@ export default class CreateOuting extends Component {
   }
 
   handleSubmit(event) {
-
-    //Create an object that captures the props and the
-    //value of state that was set in the handleChange event
+    console.log("userId: " + localStorage.getItem('userId'));
+    // Create an object that captures the props and the
+    // value of state that was set in the handleChange event
     let formData = {
       location: this.props.selectedPlace.name,
       activity: this.props.activity,
@@ -56,6 +56,7 @@ export default class CreateOuting extends Component {
 
     // Invoke helper function to post to database
     helpers.createOuting(formData);
+
   }
 
   render() {
