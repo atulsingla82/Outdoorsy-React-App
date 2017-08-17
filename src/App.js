@@ -82,8 +82,8 @@ class App extends Component {
       activity: "",
       searchRadius: null,
       apiLoaded: false,
-      results: [],
-      saved:[]
+      results: []
+    
     }
   }
 
@@ -104,14 +104,12 @@ class App extends Component {
       console.error(err)
     });
 
-      helpers.viewOuting().then(function (response) {
-            console.log(response);
-            if (response !== this.state.saved) {
-                console.log("Saved", response.data);
-                this.setState({saved: response.data});
-            }
-        }.bind(this));
+      
   }
+
+
+
+
 
   clearSearch() {
       this.setState({
@@ -214,13 +212,13 @@ class App extends Component {
 
                   
                   <Switch>
-                     <Route path="/Saved" component={Saved}/>
+                    <Route path="/Saved" component={Saved} />
                     <Route path="/Results" component={ResultsPageProps}/>
                     <Route path="/" component ={Featured}/>
                    
                   </Switch>
             
-                 <Saved saved={this.state.saved}/>
+                 
 
               <Footer />
               </Row> 

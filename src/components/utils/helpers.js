@@ -19,6 +19,7 @@ export default {
 	viewOuting(){
 		return axios.get("/viewOuting")
 	},
+	
 	sendMail(formData) {
 		return axios.get("/sendMail", formData)
 	}

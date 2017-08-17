@@ -7,12 +7,8 @@ class Featured extends Component {
         this.state = {
            
         };
-
-        
     }
     
-    
-
 
     render() {
         return (
