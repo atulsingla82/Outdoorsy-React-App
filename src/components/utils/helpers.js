@@ -18,7 +18,11 @@ export default {
 	// local storage on the server side.
 	viewOuting(){
 		return axios.get("/viewOuting")
-	},
+	}, 
+
+	deleteOuting(id) {
+    return axios.delete(`/viewOuting/${_id}`)
+  },
 	
 	sendMail(formData) {
 		return axios.get("/sendMail", formData)

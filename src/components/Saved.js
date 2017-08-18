@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row,Thumbnail,Button,Col,Image} from 'react-bootstrap';
+import { Grid, Row,Thumbnail,Button,Col,Image,Glyphicon} from 'react-bootstrap';
 
 import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ export default class Saved extends Component {
 
       saved:[]
     }
-
+this.deleteSaved = this.deleteSaved.bind(this);
 }
 
 componentDidMount() {
@@ -28,6 +28,12 @@ componentDidMount() {
   
 }
 
+deleteSaved(id){
+    
+    helpers.deleteOuting(id).then(this.state.saved);
+           
+}
+
 
   render() {
     
@@ -39,17 +45,25 @@ componentDidMount() {
             <Row>
             <div className="savedContainer">
                 <div className="saved-left">
+                <hr />
                   {/* Here we use a map function to loop through an array in JSX */}
                {this.state.saved.map(function(results, i) {
             return (
-              <p key={results._id}>{results.location} - {results.activity}- {results.date}</p>
+              <p key={results._id}>{results.location}{results.activity} {results.date} 
+              
+             <Glyphicon key={results._id} 
+             style={styles.deleteStyle} 
+             onClick={() => this.deleteSaved(this.state.results._id)} 
+             glyph="trash"/> 
+
+             </p>
+                 
+             
             );
           })}
+              
                 </div> 
-                 <div className="saved-right">
-                    
-                 </div>
-
+                 
            </div>
 
             </Row>
@@ -59,3 +73,12 @@ componentDidMount() {
     )
   }
 }
+
+const styles = {
+ 
+  deleteStyle: {
+    cursor: "pointer",
+    marginLeft: 10,
+    color: "green"
+  }
+};

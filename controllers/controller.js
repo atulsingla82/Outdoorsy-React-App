@@ -45,6 +45,22 @@ router.get("/viewOuting", function(req, res){
   });
 })
 
+router.delete("/viewOuting", function(req, res){
+  
+
+  Adventure.remove({
+   userId: localStorage.removeItem('userId')
+  }, function(err, doc){
+    if (err) {
+      return res.send(err);
+      res.json({message:'Deleted'})
+    
+    }
+  });
+})
+
+
+
 
 router.get("sendMail", function(req,res){
 
