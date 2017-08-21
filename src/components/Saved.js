@@ -53,16 +53,16 @@ deleteSaved(id){
                 <div className="saved-left">
                 <hr />
                   {/* Here we use a map function to loop through an array in JSX */}
-               {this.state.saved.map(function(results, i) {
-            return (
-              <p key={results._id}>{results.location}{results.activity} <Moment format="MM/DD/YYYY">{results.date}</Moment> 
+                  {this.state.saved.map(function(results, i) {
+                    return (
+                    <p key={results._id}>{results.location}{results.activity} <Moment format="MM/DD/YYYY">{results.date}</Moment> 
               
-             <Glyphicon key={results._id} 
-             style={styles.deleteStyle} 
-             onClick={() => this.deleteSaved(this.state.results._id)} 
-             glyph="trash"/> 
+                      <Glyphicon key={results._id} 
+                        style={styles.deleteStyle} 
+                        onClick={() => this.deleteSaved(this.state.results._id)} 
+                        glyph="trash"/> 
 
-             </p>
+                    </p>
                  
              
             );
