@@ -6,6 +6,12 @@ import { Link, Route, BrowserRouter as Router } from 'react-router-dom';
 // Helper for making AJAX requests to our API
 import helpers from "./utils/helpers";
 
+//BEGIN added by Claude 08/20/2017
+
+import Moment from 'react-moment';
+import 'moment-timezone';
+//END added by Claude 08/20/2017
+
 export default class Saved extends Component {
 
   constructor(props) {
@@ -49,7 +55,7 @@ deleteSaved(id){
                   {/* Here we use a map function to loop through an array in JSX */}
                {this.state.saved.map(function(results, i) {
             return (
-              <p key={results._id}>{results.location}{results.activity} {results.date} 
+              <p key={results._id}>{results.location}{results.activity} <Moment format="MM/DD/YYYY">{results.date}</Moment> 
               
              <Glyphicon key={results._id} 
              style={styles.deleteStyle} 
